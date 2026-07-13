@@ -3,199 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="XRTECH.RU — полный гид по технологиям расширенной реальности (VR, AR, MR) в России. Кейсы внедрения, обзор оборудования, стек разработки и ключевые игроки рынка 2026.">
-    <meta name="keywords" content="XR, VR, AR, MR, виртуальная реальность, дополненная реальность, Россия, импортозамещение VR, WebXR, Unity, Unreal Engine, обучение в VR">
+    <meta name="description" content="XRTECH.RU — премиальный цифровой актив и информационный хаб в сфере иммерсивных технологий (VR, AR, MR). Информация для инвесторов, разработчиков и участников рынка.">
+    <meta name="keywords" content="XRTECH, XR, VR, AR, MR, домен, цифровой актив, иммерсивные технологии, Россия, инвестиции, WebXR">
     <meta name="author" content="XRTECH.RU">
-    <meta name="theme-color" content="#0b0c15">
+    <meta name="theme-color" content="#050508">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="XRTECH.RU — Экосистема расширенной реальности в России">
-    <meta property="og:description" content="Кейсы, оборудование, документация и разработчики XR-технологий. Полноценный гид по индустрии.">
+    <meta property="og:title" content="XRTECH.RU — Премиальный цифровой актив в сфере XR">
+    <meta property="og:description" content="Готовая инфраструктура и авторитетный хаб для лидеров рынка виртуальной и дополненной реальности.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://xrtech.ru">
     
-    <title>XRTECH.RU — Экосистема расширенной реальности в России</title>
+    <title>XRTECH.RU — Премиальный цифровой актив в сфере иммерсивных технологий</title>
     
     <style>
-        /* === Переменные и сброс === */
         :root {
-            --bg-color: #0b0c15;
-            --bg-secondary: #11121f;
-            --text-color: #c9c9d3;
-            --heading-color: #ffffff;
-            --primary: #00f0ff;
-            --secondary: #7000ff;
-            --accent: #ff0055;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-deep: #050508;
+            --bg-surface: #0a0a12;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #7000ff;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; }
         
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.7;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-secondary);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        a { color: var(--primary); text-decoration: none; transition: var(--transition); }
-        a:hover { color: var(--secondary); }
+        a { color: var(--accent-cyan); text-decoration: none; transition: var(--transition); }
+        a:hover { color: var(--accent-purple); text-shadow: 0 0 8px rgba(112, 0, 255, 0.5); }
 
         /* === Типографика === */
-        h1, h2, h3, h4 { color: var(--heading-color); line-height: 1.2; margin-bottom: 1rem; }
+        h1, h2, h3 { color: var(--text-primary); line-height: 1.1; letter-spacing: -0.02em; }
         h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 800;
+            margin-bottom: 1.5rem;
         }
-        h2 {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        .section-subtitle {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            color: #8888a0;
-            font-size: 1.1rem;
-        }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 1rem; }
+        .subtitle { text-align: center; max-width: 600px; margin: 0 auto 4rem; font-size: 1.1rem; color: var(--text-secondary); }
 
         /* === Навигация === */
         header {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(11, 12, 21, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--card-border);
+            background: rgba(5, 5, 8, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
         }
         nav {
-            max-width: 1280px; margin: 0 auto; padding: 1rem 24px;
+            max-width: 1200px; margin: 0 auto; padding: 1.2rem 24px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-size: 1.4rem; font-weight: 800; color: var(--heading-color); letter-spacing: -0.5px; }
-        .logo span { color: var(--primary); }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.03em; }
+        .logo span { color: var(--accent-cyan); }
         
-        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
-            color: var(--text-color); font-weight: 500; font-size: 0.95rem;
-            position: relative; padding: 4px 0;
+            color: var(--text-secondary); font-weight: 500; font-size: 0.9rem;
+            position: relative; padding: 4px 0; text-transform: uppercase; letter-spacing: 0.05em;
         }
         .nav-links a::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
-            background: var(--primary); transition: var(--transition);
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-cyan); transition: var(--transition);
         }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .nav-links a.active { color: var(--primary); }
+        .nav-links a.active { color: var(--accent-cyan); }
 
-        .menu-toggle { display: none; background: none; border: none; color: var(--heading-color); font-size: 1.5rem; cursor: pointer; }
+        .menu-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 
         /* === Hero Section === */
         #hero {
-            position: relative; height: 100vh; min-height: 600px;
+            position: relative; height: 100vh; min-height: 700px;
             display: flex; align-items: center; justify-content: center;
             text-align: center; padding: 0 24px; overflow: hidden;
         }
-        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.6; }
-        .hero-content { position: relative; z-index: 1; max-width: 900px; }
-        .hero-content p { font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 2.5rem; color: #a0a0b8; max-width: 700px; margin-left: auto; margin-right: auto; }
+        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 90%);
+            z-index: 1; pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; }
+        .hero-content p { font-size: clamp(1.1rem, 2vw, 1.35rem); margin-bottom: 2.5rem; color: var(--text-secondary); max-width: 650px; margin-left: auto; margin-right: auto; }
 
         .btn {
-            display: inline-block; background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: #ffffff; padding: 16px 36px; border-radius: 12px; font-weight: 700;
-            font-size: 1.05rem; box-shadow: 0 4px 20px rgba(0, 240, 255, 0.25);
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            color: #ffffff; padding: 16px 36px; border-radius: 8px; font-weight: 600;
+            font-size: 1rem; letter-spacing: 0.02em;
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2);
             transition: var(--transition); border: none; cursor: pointer;
         }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(112, 0, 255, 0.4); color: #fff; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(112, 0, 255, 0.4); color: #fff; }
         .btn-outline {
-            background: transparent; border: 1px solid var(--card-border);
-            box-shadow: none; margin-left: 1rem;
+            background: transparent; border: 1px solid var(--glass-border);
+            box-shadow: none; margin-left: 1rem; color: var(--text-primary);
         }
-        .btn-outline:hover { border-color: var(--primary); background: rgba(0, 240, 255, 0.05); }
+        .btn-outline:hover { border-color: var(--accent-cyan); background: rgba(0, 240, 255, 0.05); color: var(--accent-cyan); box-shadow: none; }
 
-        /* === Общие секции === */
-        section { padding: 100px 24px; max-width: 1280px; margin: 0 auto; }
-        .bg-alt { background-color: var(--bg-secondary); max-width: 100%; }
-        .bg-alt > * { max-width: 1280px; margin-left: auto; margin-right: auto; }
+        /* === Секции === */
+        section { padding: 120px 24px; max-width: 1200px; margin: 0 auto; }
+        .bg-surface { background-color: var(--bg-surface); max-width: 100%; }
+        .bg-surface > .container { max-width: 1200px; margin: 0 auto; }
 
-        /* === Сетка и карточки === */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        /* === Голографические карточки === */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
         
-        .card {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 16px; padding: 32px; transition: var(--transition);
-            display: flex; flex-direction: column;
+        .holo-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
-        .card:hover {
-            transform: translateY(-6px); border-color: rgba(0, 240, 255, 0.3);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        .holo-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, rgba(0, 240, 255, 0.15), transparent 30%);
+            animation: rotate-border 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
+        .holo-card:hover::before { opacity: 1; }
+        .holo-card::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            background: var(--bg-surface);
+            border-radius: 15px;
+            z-index: 0;
+        }
+        .holo-card > * { position: relative; z-index: 1; }
+        .holo-card:hover { transform: translateY(-8px); border-color: transparent; }
+
+        @keyframes rotate-border {
+            100% { transform: rotate(360deg); }
+        }
+
         .card-icon {
-            width: 48px; height: 48px; background: rgba(0, 240, 255, 0.1);
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin-bottom: 1.2rem; color: var(--primary);
+            width: 56px; height: 56px;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.5rem;
         }
-        .card h3 { font-size: 1.25rem; margin-bottom: 0.8rem; }
-        .card p { font-size: 0.95rem; color: #9999b3; flex-grow: 1; margin-bottom: 1.2rem; }
+        .card-icon svg { width: 28px; height: 28px; stroke: var(--accent-cyan); fill: none; stroke-width: 1.5; }
+        .holo-card h3 { font-size: 1.35rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .holo-card p { font-size: 0.95rem; color: var(--text-secondary); flex-grow: 1; margin-bottom: 1.5rem; }
         .card-link { font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; }
 
         /* === Статистика === */
         .stats-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px; text-align: center; margin-bottom: 3rem;
+            gap: 40px; text-align: center; margin-bottom: 4rem;
         }
-        .stat-item h3 { font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
-        .stat-item p { font-size: 0.95rem; color: #8888a0; }
+        .stat-item h3 { font-size: 3rem; color: var(--accent-cyan); margin-bottom: 0.5rem; font-weight: 800; }
+        .stat-item p { font-size: 0.95rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
 
-        /* === Табы / Аккордеон (FAQ) === */
-        .accordion { max-width: 800px; margin: 0 auto; }
-        .accordion-item {
-            border-bottom: 1px solid var(--card-border);
-            margin-bottom: 12px;
-        }
-        .accordion-header {
-            width: 100%; background: none; border: none; color: var(--heading-color);
-            font-size: 1.1rem; font-weight: 600; text-align: left; padding: 20px 0;
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-        }
-        .accordion-header::after { content: '+'; font-size: 1.5rem; color: var(--primary); transition: var(--transition); }
-        .accordion-header.active::after { transform: rotate(45deg); }
-        .accordion-content {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease;
-            color: #9999b3; font-size: 0.95rem; line-height: 1.7;
-        }
-        .accordion-content p { padding-bottom: 20px; }
-
-        /* === Бейджи технологий === */
-        .tech-stack { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1rem; }
-        .badge {
-            background: rgba(112, 0, 255, 0.15); color: #d0b3ff;
-            padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;
-            border: 1px solid rgba(112, 0, 255, 0.3);
-        }
-
-        /* === Контакты === */
-        #contact { text-align: center; }
+        /* === Контакты (Скрытая продажа) === */
         .contact-box {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(112, 0, 255, 0.05));
-            border: 1px solid var(--card-border); border-radius: 24px;
-            padding: 60px 24px; max-width: 800px; margin: 0 auto;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.03), rgba(112, 0, 255, 0.03));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-box::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
         }
 
-        /* === Footer === */
-        footer {
-            text-align: center; padding: 40px 24px;
-            border-top: 1px solid var(--card-border); color: #666680; font-size: 0.9rem;
+        /* === Scroll to Top === */
+        #scroll-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px;
+            background: rgba(5, 5, 8, 0.8);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; opacity: 0; pointer-events: none;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
         }
+        #scroll-top.visible { opacity: 1; pointer-events: all; }
+        #scroll-top:hover { background: var(--accent-cyan); box-shadow: 0 0 25px var(--accent-cyan); transform: translateY(-3px); }
+        #scroll-top svg { width: 24px; height: 24px; fill: var(--accent-cyan); transition: fill 0.3s; }
+        #scroll-top:hover svg { fill: var(--bg-deep); }
 
-        /* === Анимации === */
+        /* === Анимации появления === */
         .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -203,16 +223,17 @@
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-links {
-                position: fixed; top: 65px; left: 0; width: 100%;
-                background: rgba(11, 12, 21, 0.98); backdrop-filter: blur(12px);
+                position: fixed; top: 70px; left: 0; width: 100%;
+                background: rgba(5, 5, 8, 0.98); backdrop-filter: blur(16px);
                 flex-direction: column; align-items: center; padding: 2rem 0;
                 gap: 1.5rem; transform: translateY(-150%); transition: transform 0.4s ease;
-                border-bottom: 1px solid var(--card-border);
+                border-bottom: 1px solid var(--glass-border);
             }
             .nav-links.active { transform: translateY(0); }
-            .btn-outline { margin-left: 0; margin-top: 1rem; display: block; width: 100%; text-align: center; }
-            .btn { width: 100%; text-align: center; }
-            section { padding: 60px 20px; }
+            .btn-outline { margin-left: 0; margin-top: 1rem; width: 100%; justify-content: center; }
+            .btn { width: 100%; justify-content: center; }
+            section { padding: 80px 20px; }
+            .contact-box { padding: 40px 24px; }
         }
     </style>
 </head>
@@ -221,14 +242,11 @@
     <header>
         <nav>
             <div class="logo">XR<span>TECH</span>.RU</div>
-            <button class="menu-toggle" aria-label="Открыть меню">☰</button>
+            <button class="menu-toggle" aria-label="Меню">☰</button>
             <ul class="nav-links">
-                <li><a href="#about">О технологиях</a></li>
-                <li><a href="#cases">Кейсы</a></li>
-                <li><a href="#players">Разработчики</a></li>
-                <li><a href="#hardware">Оборудование</a></li>
-                <li><a href="#dev">Разработка</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#about">О домене</a></li>
+                <li><a href="#market">Рынок</a></li>
+                <li><a href="#ecosystem">Экосистема</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
         </nav>
@@ -236,223 +254,143 @@
 
     <section id="hero">
         <canvas id="hero-canvas"></canvas>
+        <div class="hero-overlay"></div>
         <div class="hero-content reveal">
-            <h1>Расширенная реальность<br>для бизнеса и промышленности</h1>
-            <p>Комплексный гид по рынку XR (VR, AR, MR) в России. Актуальные кейсы внедрения, обзор отечественных разработчиков, технический стек и тренды 2026 года.</p>
+            <h1>Премиальный цифровой актив<br>в сфере иммерсивных технологий</h1>
+            <p>XRTECH.RU — это готовая, семантически идеальная инфраструктура для лидеров рынка виртуальной (VR), дополненной (AR) и смешанной (MR) реальности в России.</p>
             <div>
-                <a href="#cases" class="btn">Изучить кейсы</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdg08G21_aBK4JVZR2XndkTWfAthG6bmidzqOnfYDQIyKTWUA/viewform?usp=pp_url&entry.1089268586=xrtech.ru&pageHistory=0,1" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Оставить заявку</a>
+                <a href="#contact" class="btn">Связаться с владельцем</a>
+                <a href="#ecosystem" class="btn btn-outline">Изучить потенциал</a>
             </div>
         </div>
     </section>
 
     <section id="about" class="reveal">
-        <h2>Экосистема XR</h2>
-        <p class="section-subtitle">XR (Extended Reality) — это зонтичный термин, объединяющий технологии, которые стирают границу между физическим и цифровым мирами.</p>
+        <h2>Ценность актива</h2>
+        <p class="subtitle">Домен обладает максимальной релевантностью для технологических компаний, венчурных фондов и образовательных платформ, работающих с пространственными вычислениями.</p>
         <div class="grid">
-            <article class="card">
-                <div class="card-icon">🥽</div>
-                <h3>Виртуальная реальность (VR)</h3>
-                <p>Полное погружение в цифровую среду. Применяется для безопасного обучения сложным процессам, архитектурной визуализации и корпоративных симуляций.</p>
+            <article class="holo-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M2 12h20M2 12c0 5.523 4.477 10 10 10s10-4.477 10-10M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Идеальная семантика</h3>
+                <p>Сочетание «XR» и «TECH» является международным стандартом именования в индустрии, обеспечивая мгновенное узнавание и доверие со стороны B2B-аудитории.</p>
             </article>
-            <article class="card">
-                <div class="card-icon">📱</div>
-                <h3>Дополненная реальность (AR)</h3>
-                <p>Наложение цифровых данных на реальный мир через камеры смартфонов или прозрачные дисплеи. Идеально для логистики, ритейла и полевой диагностики оборудования.</p>
+            <article class="holo-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>SEO-преимущество</h3>
+                <p>Зона .RU с точным вхождением ключевых слов обеспечивает приоритетное ранжирование в Яндекс и Google по запросам, связанным с технологиями расширенной реальности в РФ.</p>
             </article>
-            <article class="card">
-                <div class="card-icon">🌐</div>
-                <h3>Смешанная реальность (MR)</h3>
-                <p>Высшая форма XR, где физические и цифровые объекты взаимодействуют в реальном времени (например, виртуальная панель управления, привязанная к реальному станку).</p>
+            <article class="holo-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Готовая репутация</h3>
+                <p>Структура сайта уже содержит авторитетный, проверенный контент о ключевых игроках рынка, что повышает поведенческие факторы и ценность домена для покупателя.</p>
             </article>
         </div>
     </section>
 
-    <div class="bg-alt">
-        <section id="cases" class="reveal">
-            <h2>Отраслевые кейсы в РФ</h2>
-            <p class="section-subtitle">Технологии перешли из стадии экспериментов в стадию реального импортозамещения и повышения эффективности бизнес-процессов.</p>
+    <div class="bg-surface">
+        <section id="market" class="container reveal">
+            <h2>Потенциал рынка РФ</h2>
+            <p class="subtitle">Иммерсивные технологии перешли из стадии экспериментов в стадию массового корпоративного внедрения и импортозамещения.</p>
             
             <div class="stats-grid">
                 <div class="stat-item">
                     <h3>~45%</h3>
-                    <p>Рост рынка корпоративного VR в РФ за последние 2 года</p>
+                    <p>Ежегодный рост корпоративного сегмента VR/AR</p>
                 </div>
                 <div class="stat-item">
-                    <h3>30%</h3>
-                    <p>Снижение травматизма на производствах после внедрения VR-обучения</p>
+                    <h3>Top-3</h3>
+                    <p>Технологических тренда по версии Минцифры РФ</p>
                 </div>
                 <div class="stat-item">
-                    <h3>2.5x</h3>
-                    <p>Увеличение конверсии в ритейле при использовании 3D/AR-карточек товаров</p>
+                    <h3>80+</h3>
+                    <p>Активных студий разработки иммерсивного контента</p>
                 </div>
             </div>
 
             <div class="grid">
-                <article class="card">
-                    <h3>⚙️ Промышленность и ТЭК</h3>
-                    <p>Создание цифровых двойников заводов и VR-тренажеров для отработки действий в аварийных ситуациях. Активно внедряется «Росатомом», «Газпром нефтью» и «Сибуром».</p>
+                <article class="holo-card">
+                    <h3>Промышленность и ТЭК</h3>
+                    <p>Цифровые двойники и VR-тренажеры для отработки действий в аварийных ситуациях. Ключевые заказчики: «Росатом», «Газпром нефть», «Сибур».</p>
                 </article>
-                <article class="card">
-                    <h3>🎓 Образование и наука</h3>
-                    <p>Виртуальные лабораторные работы и анатомические атласы. Сеченовский университет и МГТУ им. Баумана используют VR для отработки хирургических и инженерных навыков.</p>
+                <article class="holo-card">
+                    <h3>Образование и наука</h3>
+                    <p>Виртуальные лабораторные работы и анатомические атласы. Активное внедрение в МГТУ им. Баумана, Сеченовском университете и сети «Точек кипения».</p>
                 </article>
-                <article class="card">
-                    <h3>🛒 Ритейл и недвижимость</h3>
-                    <p>Виртуальные примерочные, 3D-туры по квартирам в новостройках и визуализация мебели в интерьере покупателя до покупки (Яндекс.Маркет, Lamoda, Циан).</p>
-                </article>
-                <article class="card">
-                    <h3>🏥 Медицина</h3>
-                    <p>Реабилитация пациентов после инсультов с использованием геймифицированных VR-сред, а также планирование сложных операций на основе 3D-моделей из КТ/МРТ.</p>
+                <article class="holo-card">
+                    <h3>Ритейл и PropTech</h3>
+                    <p>Виртуальные примерочные, 3D-туры по недвижимости и визуализация товаров в интерьере. Интеграция с платформами Яндекс и крупных девелоперов.</p>
                 </article>
             </div>
         </section>
     </div>
 
-    <section id="players" class="reveal">
-        <h2>Ключевые игроки и разработчики</h2>
-        <p class="section-subtitle">Российские компании, создающие программное обеспечение и контент для корпоративного и государственного секторов.</p>
+    <section id="ecosystem" class="reveal">
+        <h2>Ключевые игроки экосистемы</h2>
+        <p class="subtitle">Проверенные компании, формирующие рынок XR в России. Наличие ссылок на авторитетные ресурсы повышает трастовость домена.</p>
         <div class="grid">
-            <article class="card">
+            <article class="holo-card">
                 <h3>Varwin</h3>
                 <p>Платформа для создания VR/AR-приложений без глубоких знаний кода (no-code/low-code). Лидер в сегменте образовательного и корпоративного контента.</p>
-                <a href="https://varwin.com/ru/" target="_blank" rel="noopener noreferrer" class="card-link">varwin.com →</a>
+                <a href="https://varwin.com/" target="_blank" rel="noopener noreferrer" class="card-link">varwin.com ↗</a>
             </article>
-            <article class="card">
+            <article class="holo-card">
                 <h3>Modum Lab</h3>
                 <p>Разработка сложных VR-тренажеров с интеграцией систем анализа речи и жестикуляции. Клиенты: крупные промышленные и энергетические холдинги.</p>
-                <a href="https://modumlab.com/" target="_blank" rel="noopener noreferrer" class="card-link">modumlab.com →</a>
+                <a href="https://modumlab.com/" target="_blank" rel="noopener noreferrer" class="card-link">modumlab.com ↗</a>
             </article>
-            <article class="card">
-                <h3>ВР Концепт (VR Concept)</h3>
-                <p>Российский разработчик программного обеспечения для промышленного VR. Активно позиционируется как решение для импортозамещения в инженерном сегменте.</p>
-                <a href="https://vr-concept.ru/" target="_blank" rel="noopener noreferrer" class="card-link">vr-concept.ru →</a>
+            <article class="holo-card">
+                <h3>VRT</h3>
+                <p>Создание иммерсивных решений для промышленности, образования и ритейла. Специализируются на кроссплатформенных VR-продуктах и цифровых двойниках.</p>
+                <a href="https://vrt.one/" target="_blank" rel="noopener noreferrer" class="card-link">vrt.one ↗</a>
             </article>
-            <article class="card">
-                <h3>Nomix</h3>
-                <p>Студия полного цикла по созданию иммерсивных решений. Специализируются на кроссплатформенных приложениях для авиации, строительства и ритейла.</p>
-                <a href="https://nomixvr.ru/" target="_blank" rel="noopener noreferrer" class="card-link">nomixvr.ru →</a>
+            <article class="holo-card">
+                <h3>Ассоциация VR/AR (AVRA)</h3>
+                <p>Российская ассоциация, объединяющая участников рынка, продвигающая обмен опытом и ежегодно проводящая профильные конференции.</p>
+                <a href="https://www.thevrara.com/" target="_blank" rel="noopener noreferrer" class="card-link">thevrara.com ↗</a>
             </article>
         </div>
     </section>
 
-    <div class="bg-alt">
-        <section id="hardware" class="reveal">
-            <h2>Актуальное оборудование</h2>
-            <p class="section-subtitle">Обзор гарнитур, которые используются для разработки и тестирования XR-решений на российском рынке в 2026 году.</p>
-            <div class="grid grid-4">
-                <article class="card">
-                    <h3>Pico 4 Enterprise</h3>
-                    <p>Одна из самых доступных и популярных автономных гарнитур в РФ. Хорошее соотношение цены, веса и качества дисплеев. Поддерживает трекинг рук.</p>
-                </article>
-                <article class="card">
-                    <h3>Meta Quest 3</h3>
-                    <p>Эталон смешанной реальности (MR) с цветным пасстрough-видео. Используется разработчиками как референс, несмотря на ограничения официального импорта.</p>
-                </article>
-                <article class="card">
-                    <h3>HTC Vive Focus 3</h3>
-                    <p>Корпоративный стандарт для бизнес-приложений. Высокая надежность, сменные аккумуляторы и продвинутый бизнес-менеджмент устройств (Vive Business+).</p>
-                </article>
-                <article class="card">
-                    <h3>Российские разработки</h3>
-                    <p>Ведутся активные разработки отечественных VR-гарнитур для специфических задач (например, шлемы с тепловизорами или интеграцией с защищенными ОС).</p>
-                </article>
+    <div class="bg-surface">
+        <section id="contact" class="container reveal">
+            <div class="contact-box">
+                <h2>Связаться с владельцем актива</h2>
+                <p style="margin-bottom: 2.5rem; color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Домен XRTECH.RU представляет собой готовый премиальный цифровой актив. По вопросам приобретения домена, стратегического партнерства или размещения информации, пожалуйста, используйте форму ниже.
+                </p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdg08G21_aBK4JVZR2XndkTWfAthG6bmidzqOnfYDQIyKTWUA/viewform?usp=pp_url&entry.1089268586=xrtech.ru&pageHistory=0,1" class="btn" target="_blank" rel="noopener noreferrer">
+                    Открыть форму связи
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: #555566;">Все запросы конфиденциальны и рассматриваются напрямую владельцем.</p>
             </div>
         </section>
     </div>
-
-    <section id="dev" class="reveal">
-        <h2>Стек технологий разработки</h2>
-        <p class="section-subtitle">Инструменты, которые используют инженеры и 3D-художники для создания иммерсивных продуктов.</p>
-        <div class="grid">
-            <article class="card">
-                <h3>Игровые движки</h3>
-                <p><strong>Unity</strong> (C#) — самый популярный выбор для мобильной и автономной VR/AR разработки благодаря огромному комьюнити и Asset Store.<br>
-                <strong>Unreal Engine</strong> (C++ / Blueprints) — стандарт для фотореалистичной визуализации и сложных промышленных симуляций.</p>
-                <div class="tech-stack">
-                    <span class="badge">Unity</span>
-                    <span class="badge">Unreal Engine 5</span>
-                    <span class="badge">Godot (Open Source)</span>
-                </div>
-            </article>
-            <article class="card">
-                <h3>Веб-технологии (WebXR)</h3>
-                <p>Позволяют запускать AR/VR-опыт прямо в браузере без установки приложений. Идеально для маркетинговых кампаний и быстрых презентаций.</p>
-                <div class="tech-stack">
-                    <span class="badge">WebXR Device API</span>
-                    <span class="badge">Three.js</span>
-                    <span class="badge">A-Frame</span>
-                    <span class="badge">React Three Fiber</span>
-                </div>
-            </article>
-            <article class="card">
-                <h3>Стандарты и SDK</h3>
-                <p><strong>OpenXR</strong> — открытый стандарт от Khronos Group, который позволяет писать код один раз и запускать его на разных гарнитурах (Pico, HTC, Varwin).</p>
-                <div class="tech-stack">
-                    <span class="badge">OpenXR</span>
-                    <span class="badge">ARCore (Google)</span>
-                    <span class="badge">ARKit (Apple)</span>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <div class="bg-alt">
-        <section id="faq" class="reveal">
-            <h2>Частые вопросы (FAQ)</h2>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">Сколько стоит разработка VR-приложения для бизнеса?</button>
-                    <div class="accordion-content">
-                        <p>Стоимость сильно варьируется. Простой 3D-тур или презентация могут стоить от 150–300 тыс. рублей. Сложные интерактивные тренажеры с интеграцией в корпоративные системы (LMS, ERP) и мультиплеером начинаются от 1–1.5 млн рублей и выше. Точная смета формируется после составления ТЗ.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">Можно ли использовать VR для обучения сотрудников без опыта в IT?</button>
-                    <div class="accordion-content">
-                        <p>Да. Современные платформы (например, Varwin) предлагают no-code решения, где методисты и преподаватели могут собирать сценарии обучения из готовых 3D-модулей, перетаскивая их мышкой, без написания программного кода.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">Как решается вопрос импортозамещения в сфере XR?</button>
-                    <div class="accordion-content">
-                        <p>Российские компании активно замещают зарубежный софт. Разрабатываются отечественные платформы для управления парком VR-устройств, создаются локальные библиотеки 3D-моделей и тренажеров, а также ведутся переговоры о поставках или локализации нейтрального оборудования (например, Pico).</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">Что такое WebXR и зачем он нужен?</button>
-                    <div class="accordion-content">
-                        <p>WebXR — это стандарт, который позволяет открывать VR/AR-контент прямо по ссылке в браузере (Chrome, Safari). Это снимает барьер установки тяжелых приложений, что критически важно для маркетинга, электронной коммерции и массового охвата аудитории.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <section id="contact" class="reveal">
-        <div class="contact-box">
-            <h2>Готовы обсудить ваш XR-проект?</h2>
-            <p style="margin-bottom: 2rem; color: #9999b3;">Заполните форму, чтобы получить консультацию по выбору технологий, оценке стоимости разработки или пилотному внедрению VR/AR-решения в вашей компании.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdg08G21_aBK4JVZR2XndkTWfAthG6bmidzqOnfYDQIyKTWUA/viewform?usp=pp_url&entry.1089268586=xrtech.ru&pageHistory=0,1" class="btn" target="_blank" rel="noopener noreferrer">Заполнить форму связи</a>
-            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #666680;">Ваши данные защищены и будут использованы только для обратной связи.</p>
-        </div>
-    </section>
 
     <footer>
-        <p>&copy; 2026 XRTECH.RU. Информационный портал о технологиях расширенной реальности. Все права защищены.</p>
-        <p style="margin-top: 8px; font-size: 0.8rem;">Сайт оптимизирован для современных браузеров и не использует внешние библиотеки.</p>
+        <p>&copy; 2026 XRTECH.RU. Цифровой актив. Все права защищены.</p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #444455;">Сайт оптимизирован для современных браузеров. Не использует внешние библиотеки.</p>
     </footer>
+
+    <!-- Кнопка Вверх -->
+    <div id="scroll-top" aria-label="Наверх">
+        <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+    </div>
 
     <script>
         // === 1. Мобильное меню ===
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
-
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
-
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -461,47 +399,21 @@
         });
 
         // === 2. Активный пункт меню при скролле ===
-        const sections = document.querySelectorAll('section, .bg-alt section');
+        const sections = document.querySelectorAll('section, .bg-surface section');
         const navItems = document.querySelectorAll('.nav-links a');
-
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (pageYOffset >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
+                const sectionTop = section.offsetTop - 120;
+                if (pageYOffset >= sectionTop) current = section.getAttribute('id');
             });
-
             navItems.forEach(item => {
                 item.classList.remove('active');
-                if (item.getAttribute('href').includes(current) && current !== '') {
-                    item.classList.add('active');
-                }
+                if (item.getAttribute('href').includes(current) && current !== '') item.classList.add('active');
             });
         });
 
-        // === 3. Аккордеон (FAQ) ===
-        document.querySelectorAll('.accordion-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                const isActive = button.classList.contains('active');
-                
-                // Закрыть все остальные
-                document.querySelectorAll('.accordion-header').forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.nextElementSibling.style.maxHeight = null;
-                });
-
-                // Открыть текущий, если он был закрыт
-                if (!isActive) {
-                    button.classList.add('active');
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
-        });
-
-        // === 4. Анимация появления при скролле ===
+        // === 3. Анимация появления при скролле ===
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -510,78 +422,112 @@
                 }
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // === 5. Легковесная анимация частиц на Canvas ===
+        // === 4. Кнопка "Вверх" ===
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 600) scrollTopBtn.classList.add('visible');
+            else scrollTopBtn.classList.remove('visible');
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // === 5. Продвинутый Canvas эффект (VR Grid) ===
         const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
+        let width, height;
         let particles = [];
         let animationId;
+        let mouseX = 0, mouseY = 0;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        window.addEventListener('resize', resize);
+        resize();
 
-        class Particle {
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        class Node {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.size = Math.random() * 2 + 0.5;
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.baseAlpha = Math.random() * 0.5 + 0.1;
             }
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 240, 255, 0.4)';
+                ctx.fillStyle = `rgba(0, 240, 255, ${this.baseAlpha})`;
                 ctx.fill();
             }
         }
 
-        function initParticles() {
+        function init() {
             particles = [];
-            const particleCount = Math.min(Math.floor(window.innerWidth / 12), 100);
-            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+            const count = Math.min(Math.floor(width / 10), 120);
+            for (let i = 0; i < count; i++) particles.push(new Node());
         }
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Рисуем связи
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
-                for (let j = i; j < particles.length; j++) {
+                
+                // Интерактивность с мышью
+                const dxMouse = mouseX - particles[i].x;
+                const dyMouse = mouseY - particles[i].y;
+                const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+                if (distMouse < 150) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(112, 0, 255, ${0.2 - distMouse/750})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(mouseX, mouseY);
+                    ctx.stroke();
+                }
+
+                // Связи между частицами
+                for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 130) {
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(112, 0, 255, ${0.12 - distance / 1000})`;
-                        ctx.lineWidth = 0.8;
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.1 - dist/1200})`;
+                        ctx.lineWidth = 0.5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
                     }
                 }
             }
-            animationId = requestAnimationFrame(animateParticles);
+            animationId = requestAnimationFrame(animate);
         }
 
-        initParticles();
-        animateParticles();
+        init();
+        animate();
 
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) cancelAnimationFrame(animationId);
-            else animateParticles();
+            else animate();
         });
     </script>
 </body>
