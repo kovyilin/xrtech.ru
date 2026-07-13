@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="XRTECH.RU — премиальный цифровой актив и информационный хаб в сфере иммерсивных технологий (VR, AR, MR). Информация для инвесторов, разработчиков и участников рынка.">
-    <meta name="keywords" content="XRTECH, XR, VR, AR, MR, домен, цифровой актив, иммерсивные технологии, Россия, инвестиции, WebXR">
+    <meta name="description" content="XRTECH.RU — информационный хаб по технологиям расширенной реальности (XR, VR, AR, MR). Стандарты, исследования, компании, кейсы внедрения и образовательные программы в России.">
+    <meta name="keywords" content="XR, VR, AR, MR, виртуальная реальность, дополненная реальность, смешанная реальность, OpenXR, WebXR, Россия, исследования, статистика">
     <meta name="author" content="XRTECH.RU">
     <meta name="theme-color" content="#050508">
     
-    <meta property="og:title" content="XRTECH.RU — Премиальный цифровой актив в сфере XR">
-    <meta property="og:description" content="Готовая инфраструктура и авторитетный хаб для лидеров рынка виртуальной и дополненной реальности.">
+    <meta property="og:title" content="XRTECH.RU — Хаб по технологиям расширенной реальности">
+    <meta property="og:description" content="Полная информация о XR-индустрии в России: стандарты, компании, исследования, кейсы и образовательные программы.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://xrtech.ru">
     
-    <title>XRTECH.RU — Премиальный цифровой актив в сфере иммерсивных технологий</title>
+    <title>XRTECH.RU — Информационный хаб по технологиям расширенной реальности</title>
     
     <style>
         :root {
             --bg-deep: #050508;
             --bg-surface: #0a0a12;
+            --bg-card: #111118;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b8;
+            --text-muted: #666680;
             --accent-cyan: #00f0ff;
             --accent-purple: #7000ff;
-            --glass-bg: rgba(255, 255, 255, 0.03);
+            --accent-pink: #ff006e;
+            --glass-bg: rgba(255, 255, 255, 0.02);
             --glass-border: rgba(255, 255, 255, 0.08);
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -43,9 +46,9 @@
         a:hover { color: var(--accent-purple); text-shadow: 0 0 8px rgba(112, 0, 255, 0.5); }
 
         /* === Типографика === */
-        h1, h2, h3 { color: var(--text-primary); line-height: 1.1; letter-spacing: -0.02em; }
+        h1, h2, h3, h4 { color: var(--text-primary); line-height: 1.1; letter-spacing: -0.02em; }
         h1 {
-            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -53,24 +56,26 @@
             font-weight: 800;
             margin-bottom: 1.5rem;
         }
-        h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 1rem; }
-        .subtitle { text-align: center; max-width: 600px; margin: 0 auto 4rem; font-size: 1.1rem; color: var(--text-secondary); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+        h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
+        .section-header p { font-size: 1.1rem; color: var(--text-secondary); margin-top: 1rem; }
 
         /* === Навигация === */
         header {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(5, 5, 8, 0.7);
+            background: rgba(5, 5, 8, 0.85);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--glass-border);
         }
         nav {
-            max-width: 1200px; margin: 0 auto; padding: 1.2rem 24px;
+            max-width: 1400px; margin: 0 auto; padding: 1.2rem 24px;
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.03em; }
         .logo span { color: var(--accent-cyan); }
         
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
         .nav-links a {
             color: var(--text-secondary); font-weight: 500; font-size: 0.9rem;
             position: relative; padding: 4px 0; text-transform: uppercase; letter-spacing: 0.05em;
@@ -86,18 +91,18 @@
 
         /* === Hero Section === */
         #hero {
-            position: relative; height: 100vh; min-height: 700px;
+            position: relative; min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 0 24px; overflow: hidden;
+            text-align: center; padding: 120px 24px 80px; overflow: hidden;
         }
-        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.4; }
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 90%);
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 80%);
             z-index: 1; pointer-events: none;
         }
-        .hero-content { position: relative; z-index: 2; max-width: 900px; }
-        .hero-content p { font-size: clamp(1.1rem, 2vw, 1.35rem); margin-bottom: 2.5rem; color: var(--text-secondary); max-width: 650px; margin-left: auto; margin-right: auto; }
+        .hero-content { position: relative; z-index: 2; max-width: 1000px; }
+        .hero-content p { font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 2rem; color: var(--text-secondary); max-width: 750px; margin-left: auto; margin-right: auto; }
 
         .btn {
             display: inline-flex; align-items: center; gap: 8px;
@@ -108,55 +113,42 @@
             transition: var(--transition); border: none; cursor: pointer;
         }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(112, 0, 255, 0.4); color: #fff; }
-        .btn-outline {
-            background: transparent; border: 1px solid var(--glass-border);
-            box-shadow: none; margin-left: 1rem; color: var(--text-primary);
-        }
-        .btn-outline:hover { border-color: var(--accent-cyan); background: rgba(0, 240, 255, 0.05); color: var(--accent-cyan); box-shadow: none; }
 
         /* === Секции === */
-        section { padding: 120px 24px; max-width: 1200px; margin: 0 auto; }
-        .bg-surface { background-color: var(--bg-surface); max-width: 100%; }
-        .bg-surface > .container { max-width: 1200px; margin: 0 auto; }
+        section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; }
+        .bg-surface { background-color: var(--bg-surface); max-width: 100%; padding: 100px 24px; }
+        .bg-surface .container { max-width: 1400px; margin: 0 auto; }
 
-        /* === Голографические карточки === */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+        /* === Карточки === */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
         
-        .holo-card {
-            background: var(--glass-bg);
+        .card {
+            background: var(--bg-card);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 40px 32px;
-            position: relative;
-            overflow: hidden;
+            padding: 32px;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
-        .holo-card::before {
+        .card::before {
             content: '';
             position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(transparent, rgba(0, 240, 255, 0.15), transparent 30%);
-            animation: rotate-border 4s linear infinite;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-        .holo-card:hover::before { opacity: 1; }
-        .holo-card::after {
-            content: '';
-            position: absolute;
-            inset: 1px;
-            background: var(--bg-surface);
-            border-radius: 15px;
-            z-index: 0;
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 240, 255, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
         }
-        .holo-card > * { position: relative; z-index: 1; }
-        .holo-card:hover { transform: translateY(-8px); border-color: transparent; }
-
-        @keyframes rotate-border {
-            100% { transform: rotate(360deg); }
-        }
+        .card:hover::before { opacity: 1; }
 
         .card-icon {
             width: 56px; height: 56px;
@@ -164,43 +156,63 @@
             border: 1px solid rgba(0, 240, 255, 0.2);
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
         .card-icon svg { width: 28px; height: 28px; stroke: var(--accent-cyan); fill: none; stroke-width: 1.5; }
-        .holo-card h3 { font-size: 1.35rem; margin-bottom: 1rem; color: var(--text-primary); }
-        .holo-card p { font-size: 0.95rem; color: var(--text-secondary); flex-grow: 1; margin-bottom: 1.5rem; }
-        .card-link { font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; }
+        .card h3 { font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--text-primary); }
+        .card p { font-size: 0.95rem; color: var(--text-secondary); flex-grow: 1; margin-bottom: 1rem; }
+        .card-link { font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; margin-top: auto; }
 
         /* === Статистика === */
         .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px; text-align: center; margin-bottom: 4rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px; margin-bottom: 3rem;
         }
-        .stat-item h3 { font-size: 3rem; color: var(--accent-cyan); margin-bottom: 0.5rem; font-weight: 800; }
-        .stat-item p { font-size: 0.95rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .stat-card:hover { border-color: var(--accent-cyan); transform: translateY(-4px); }
+        .stat-card h3 { font-size: 2.8rem; color: var(--accent-cyan); margin-bottom: 0.5rem; font-weight: 800; }
+        .stat-card p { font-size: 0.95rem; color: var(--text-secondary); }
 
-        /* === Контакты (Скрытая продажа) === */
+        /* === Таблица / Список === */
+        .info-list { list-style: none; }
+        .info-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .info-list li:last-child { border-bottom: none; }
+        .info-list li::before {
+            content: '→';
+            color: var(--accent-cyan);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* === Контакты === */
         .contact-box {
             background: linear-gradient(135deg, rgba(0, 240, 255, 0.03), rgba(112, 0, 255, 0.03));
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 60px 40px;
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-box::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
         }
 
         /* === Scroll to Top === */
         #scroll-top {
             position: fixed; bottom: 30px; right: 30px;
             width: 50px; height: 50px;
-            background: rgba(5, 5, 8, 0.8);
+            background: rgba(5, 5, 8, 0.9);
             border: 1px solid var(--accent-cyan);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -208,18 +220,20 @@
             transition: var(--transition);
             backdrop-filter: blur(8px);
             z-index: 999;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
         }
         #scroll-top.visible { opacity: 1; pointer-events: all; }
-        #scroll-top:hover { background: var(--accent-cyan); box-shadow: 0 0 25px var(--accent-cyan); transform: translateY(-3px); }
+        #scroll-top:hover { background: var(--accent-cyan); transform: translateY(-3px); }
         #scroll-top svg { width: 24px; height: 24px; fill: var(--accent-cyan); transition: fill 0.3s; }
         #scroll-top:hover svg { fill: var(--bg-deep); }
 
-        /* === Анимации появления === */
+        /* === Анимации === */
         .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* === Адаптивность === */
+        @media (max-width: 1024px) {
+            .grid, .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        }
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-links {
@@ -227,12 +241,10 @@
                 background: rgba(5, 5, 8, 0.98); backdrop-filter: blur(16px);
                 flex-direction: column; align-items: center; padding: 2rem 0;
                 gap: 1.5rem; transform: translateY(-150%); transition: transform 0.4s ease;
-                border-bottom: 1px solid var(--glass-border);
             }
             .nav-links.active { transform: translateY(0); }
-            .btn-outline { margin-left: 0; margin-top: 1rem; width: 100%; justify-content: center; }
             .btn { width: 100%; justify-content: center; }
-            section { padding: 80px 20px; }
+            section { padding: 60px 20px; }
             .contact-box { padding: 40px 24px; }
         }
     </style>
@@ -244,9 +256,13 @@
             <div class="logo">XR<span>TECH</span>.RU</div>
             <button class="menu-toggle" aria-label="Меню">☰</button>
             <ul class="nav-links">
-                <li><a href="#about">О домене</a></li>
+                <li><a href="#about">Технологии</a></li>
+                <li><a href="#standards">Стандарты</a></li>
                 <li><a href="#market">Рынок</a></li>
-                <li><a href="#ecosystem">Экосистема</a></li>
+                <li><a href="#companies">Компании</a></li>
+                <li><a href="#cases">Кейсы</a></li>
+                <li><a href="#education">Образование</a></li>
+                <li><a href="#events">События</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
         </nav>
@@ -256,135 +272,397 @@
         <canvas id="hero-canvas"></canvas>
         <div class="hero-overlay"></div>
         <div class="hero-content reveal">
-            <h1>Премиальный цифровой актив<br>в сфере иммерсивных технологий</h1>
-            <p>XRTECH.RU — это готовая, семантически идеальная инфраструктура для лидеров рынка виртуальной (VR), дополненной (AR) и смешанной (MR) реальности в России.</p>
-            <div>
-                <a href="#contact" class="btn">Связаться с владельцем</a>
-                <a href="#ecosystem" class="btn btn-outline">Изучить потенциал</a>
-            </div>
+            <h1>Информационный хаб<br>по технологиям XR</h1>
+            <p>Полная информация о рынке расширенной реальности в России: стандарты, исследования, ключевые игроки, кейсы внедрения и образовательные программы.</p>
+            <a href="#about" class="btn">Изучить технологии</a>
         </div>
     </section>
 
     <section id="about" class="reveal">
-        <h2>Ценность актива</h2>
-        <p class="subtitle">Домен обладает максимальной релевантностью для технологических компаний, венчурных фондов и образовательных платформ, работающих с пространственными вычислениями.</p>
-        <div class="grid">
-            <article class="holo-card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M2 12h20M2 12c0 5.523 4.477 10 10 10s10-4.477 10-10M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <h3>Идеальная семантика</h3>
-                <p>Сочетание «XR» и «TECH» является международным стандартом именования в индустрии, обеспечивая мгновенное узнавание и доверие со стороны B2B-аудитории.</p>
-            </article>
-            <article class="holo-card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <h3>SEO-преимущество</h3>
-                <p>Зона .RU с точным вхождением ключевых слов обеспечивает приоритетное ранжирование в Яндекс и Google по запросам, связанным с технологиями расширенной реальности в РФ.</p>
-            </article>
-            <article class="holo-card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <h3>Готовая репутация</h3>
-                <p>Структура сайта уже содержит авторитетный, проверенный контент о ключевых игроках рынка, что повышает поведенческие факторы и ценность домена для покупателя.</p>
-            </article>
+        <div class="section-header">
+            <h2>Что такое XR?</h2>
+            <p>Extended Reality (XR) — зонтичный термин, объединяющий все формы иммерсивных технологий, стирающих границу между физическим и цифровым мирами.</p>
         </div>
-    </section>
-
-    <div class="bg-surface">
-        <section id="market" class="container reveal">
-            <h2>Потенциал рынка РФ</h2>
-            <p class="subtitle">Иммерсивные технологии перешли из стадии экспериментов в стадию массового корпоративного внедрения и импортозамещения.</p>
+        
+        <div class="grid-3">
+            <article class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M2 8h20v8H2z M6 12h2 M16 12h2 M12 8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>VR (Виртуальная реальность)</h3>
+                <p>Полное погружение пользователя в смоделированную цифровую среду через гарнитуру. Применяется для обучения, симуляций, архитектурной визуализации и корпоративных тренингов.</p>
+            </article>
             
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>~45%</h3>
-                    <p>Ежегодный рост корпоративного сегмента VR/AR</p>
+            <article class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 4.45 10 10 10s10-4.45 10-10V7l-10-5z M8 12h8 M12 8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
-                <div class="stat-item">
-                    <h3>Top-3</h3>
-                    <p>Технологических тренда по версии Минцифры РФ</p>
+                <h3>AR (Дополненная реальность)</h3>
+                <p>Наложение цифровых объектов на реальный мир через камеры смартфонов или прозрачные дисплеи. Используется в ритейле, логистике, маркетинге и полевой диагностике оборудования.</p>
+            </article>
+            
+            <article class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
-                <div class="stat-item">
-                    <h3>80+</h3>
-                    <p>Активных студий разработки иммерсивного контента</p>
-                </div>
-            </div>
-
-            <div class="grid">
-                <article class="holo-card">
-                    <h3>Промышленность и ТЭК</h3>
-                    <p>Цифровые двойники и VR-тренажеры для отработки действий в аварийных ситуациях. Ключевые заказчики: «Росатом», «Газпром нефть», «Сибур».</p>
-                </article>
-                <article class="holo-card">
-                    <h3>Образование и наука</h3>
-                    <p>Виртуальные лабораторные работы и анатомические атласы. Активное внедрение в МГТУ им. Баумана, Сеченовском университете и сети «Точек кипения».</p>
-                </article>
-                <article class="holo-card">
-                    <h3>Ритейл и PropTech</h3>
-                    <p>Виртуальные примерочные, 3D-туры по недвижимости и визуализация товаров в интерьере. Интеграция с платформами Яндекс и крупных девелоперов.</p>
-                </article>
-            </div>
-        </section>
-    </div>
-
-    <section id="ecosystem" class="reveal">
-        <h2>Ключевые игроки экосистемы</h2>
-        <p class="subtitle">Проверенные компании, формирующие рынок XR в России. Наличие ссылок на авторитетные ресурсы повышает трастовость домена.</p>
-        <div class="grid">
-            <article class="holo-card">
-                <h3>Varwin</h3>
-                <p>Платформа для создания VR/AR-приложений без глубоких знаний кода (no-code/low-code). Лидер в сегменте образовательного и корпоративного контента.</p>
-                <a href="https://varwin.com/" target="_blank" rel="noopener noreferrer" class="card-link">varwin.com ↗</a>
-            </article>
-            <article class="holo-card">
-                <h3>Modum Lab</h3>
-                <p>Разработка сложных VR-тренажеров с интеграцией систем анализа речи и жестикуляции. Клиенты: крупные промышленные и энергетические холдинги.</p>
-                <a href="https://modumlab.com/" target="_blank" rel="noopener noreferrer" class="card-link">modumlab.com ↗</a>
-            </article>
-            <article class="holo-card">
-                <h3>VRT</h3>
-                <p>Создание иммерсивных решений для промышленности, образования и ритейла. Специализируются на кроссплатформенных VR-продуктах и цифровых двойниках.</p>
-                <a href="https://vrt.one/" target="_blank" rel="noopener noreferrer" class="card-link">vrt.one ↗</a>
-            </article>
-            <article class="holo-card">
-                <h3>Ассоциация VR/AR (AVRA)</h3>
-                <p>Российская ассоциация, объединяющая участников рынка, продвигающая обмен опытом и ежегодно проводящая профильные конференции.</p>
-                <a href="https://www.thevrara.com/" target="_blank" rel="noopener noreferrer" class="card-link">thevrara.com ↗</a>
+                <h3>MR (Смешанная реальность)</h3>
+                <p>Высшая форма XR, где физические и цифровые объекты взаимодействуют в реальном времени. Например, виртуальная панель управления, привязанная к реальному промышленному станку.</p>
             </article>
         </div>
     </section>
 
     <div class="bg-surface">
-        <section id="contact" class="container reveal">
-            <div class="contact-box">
-                <h2>Связаться с владельцем актива</h2>
-                <p style="margin-bottom: 2.5rem; color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Домен XRTECH.RU представляет собой готовый премиальный цифровой актив. По вопросам приобретения домена, стратегического партнерства или размещения информации, пожалуйста, используйте форму ниже.
-                </p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdg08G21_aBK4JVZR2XndkTWfAthG6bmidzqOnfYDQIyKTWUA/viewform?usp=pp_url&entry.1089268586=xrtech.ru&pageHistory=0,1" class="btn" target="_blank" rel="noopener noreferrer">
-                    Открыть форму связи
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-                <p style="margin-top: 1.5rem; font-size: 0.8rem; color: #555566;">Все запросы конфиденциальны и рассматриваются напрямую владельцем.</p>
+        <section id="standards" class="container reveal">
+            <div class="section-header">
+                <h2>Стандарты и спецификации</h2>
+                <p>Открытые стандарты, обеспечивающие кроссплатформенность и совместимость XR-приложений.</p>
+            </div>
+            
+            <div class="grid">
+                <article class="card">
+                    <h3>OpenXR</h3>
+                    <p>Открытый, бесплатный стандарт API от Khronos Group, обеспечивающий высокую производительность и кроссплатформенность XR-приложений. Позволяет писать код один раз и запускать на различных устройствах.</p>
+                    <a href="https://www.khronos.org/openxr/" target="_blank" rel="noopener noreferrer" class="card-link">khronos.org/openxr →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>WebXR Device API</h3>
+                    <p>Веб-стандарт от W3C для доступа к устройствам VR/AR прямо из браузера. Позволяет создавать иммерсивный опыт без установки приложений, что критично для массового охвата.</p>
+                    <a href="https://developer.mozilla.org/ru/docs/Web/API/WebXR_Device_API" target="_blank" rel="noopener noreferrer" class="card-link">MDN WebXR →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>ARCore (Google)</h3>
+                    <p>Платформа Google для создания AR-приложений на Android. Обеспечивает отслеживание движения, понимание окружающей среды и взаимодействие с освещением.</p>
+                    <a href="https://developers.google.com/ar" target="_blank" rel="noopener noreferrer" class="card-link">developers.google.com/ar →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>ARKit (Apple)</h3>
+                    <p>Фреймворк Apple для создания AR-опыта на iOS и iPadOS. Включает отслеживание лиц, обнаружение объектов и интеграцию с RealityKit.</p>
+                    <a href="https://developer.apple.com/augmented-reality/" target="_blank" rel="noopener noreferrer" class="card-link">developer.apple.com →</a>
+                </article>
             </div>
         </section>
     </div>
+
+    <section id="market" class="reveal">
+        <div class="section-header">
+            <h2>Рынок XR: исследования и статистика</h2>
+            <p>Аналитика глобального и российского рынков расширенной реальности.</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>$253.5B</h3>
+                <p>Объем глобального рынка XR в 2025 году</p>
+            </div>
+            <div class="stat-card">
+                <h3>+87%</h3>
+                <p>Ожидаемый рост рынка VR в 2026 году</p>
+            </div>
+            <div class="stat-card">
+                <h3>14.5M</h3>
+                <p>Устройств XR отгружено в 2025 году (+41.6% YoY)</p>
+            </div>
+            <div class="stat-card">
+                <h3>24%</h3>
+                <p>Рост внедрения VR в обучении персонала</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <article class="card">
+                <h3>Глобальные тренды</h3>
+                <p>По данным Research Nester, объем рынка XR в 2025 году составил $252.6 млрд и, по прогнозам, достигнет $4441.5 млрд к 2034 году. Основные драйверы: корпоративное обучение, промышленность и ритейл.</p>
+                <a href="https://www.researchnester.com/ru/reports/extended-reality-market/4863" target="_blank" rel="noopener noreferrer" class="card-link">Исследование →</a>
+            </article>
+            
+            <article class="card">
+                <h3>Российский рынок</h3>
+                <p>В 2025 году рынок немного просел (–12%) из-за переноса крупных релизов, но в 2026 году аналитики ожидают мощный рост примерно +87%. Ключевые сегменты: промышленность, образование, ритейл.</p>
+                <a href="https://business.another-world.com/blog/vr-budushchee" target="_blank" rel="noopener noreferrer" class="card-link">Аналитика →</a>
+            </article>
+            
+            <article class="card">
+                <h3>Отраслевое распределение</h3>
+                <p>По статистике 2026 года: обучение персонала — рост 24%, производство — 21%, автомобильная отрасль — 19%, маркетинг и реклама — 16%. Корпоративный сегмент показывает стабильный рост.</p>
+                <a href="https://vrtrend.ru/blog/statistika-vr-dlya-industrii-obucheniya-i-obrazovaniya-v-2026" target="_blank" rel="noopener noreferrer" class="card-link">Статистика →</a>
+            </article>
+        </div>
+    </section>
+
+    <div class="bg-surface">
+        <section id="companies" class="container reveal">
+            <div class="section-header">
+                <h2>Ключевые игроки рынка РФ</h2>
+                <p>Российские компании, формирующие индустрию XR-разработки.</p>
+            </div>
+            
+            <div class="grid">
+                <article class="card">
+                    <h3>Varwin</h3>
+                    <p>Платформа для создания VR/AR-приложений без глубоких знаний кода (no-code/low-code). Лидер в сегменте образовательного и корпоративного контента. Работает в 24+ странах с 2015 года.</p>
+                    <a href="https://varwin.com/" target="_blank" rel="noopener noreferrer" class="card-link">varwin.com →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>Modum Lab</h3>
+                    <p>Разработка сложных VR-тренажеров с интеграцией систем анализа речи и жестикуляции. Клиенты: крупные промышленные и энергетические холдинги, включая Газпром бурение.</p>
+                    <a href="https://modumlab.com/" target="_blank" rel="noopener noreferrer" class="card-link">modumlab.com →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>VRT</h3>
+                    <p>Создание иммерсивных решений для промышленности, образования и ритейла. Специализируются на кроссплатформенных VR-продуктах и цифровых двойниках.</p>
+                    <a href="https://vrt.one/" target="_blank" rel="noopener noreferrer" class="card-link">vrt.one →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>LikeVR Studio</h3>
+                    <p>Студия разработки VR/AR решений. Более 300 реализованных проектов для крупных брендов и IT-компаний. Специализация: корпоративные тренажеры и образовательные платформы.</p>
+                    <a href="https://likevr.ru/" target="_blank" rel="noopener noreferrer" class="card-link">likevr.ru →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>Enter VR</h3>
+                    <p>Одна из ведущих компаний в России по разработке приложений виртуальной и дополненной реальности. Фокус на B2B-сегменте и корпоративных решениях.</p>
+                    <a href="https://vrdigest.ru/companies/" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>Ассоциация VR/AR (AVRA)</h3>
+                    <p>Российская ассоциация, объединяющая участников рынка. Продвигает обмен опытом, проводит профильные конференции и представляет интересы индустрии.</p>
+                    <a href="https://www.thevrara.com/" target="_blank" rel="noopener noreferrer" class="card-link">thevrara.com →</a>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <section id="hardware" class="reveal">
+        <div class="section-header">
+            <h2>Оборудование и устройства</h2>
+            <p>Актуальные гарнитуры и устройства для разработки и использования XR-приложений.</p>
+        </div>
+        
+        <div class="grid-4">
+            <article class="card">
+                <h3>Meta Quest 3</h3>
+                <p>Эталон смешанной реальности с цветным passthrough-видео. Высокая производительность и автономность.</p>
+            </article>
+            
+            <article class="card">
+                <h3>Pico 4 Enterprise</h3>
+                <p>Популярная автономная гарнитура в РФ. Хорошее соотношение цены, веса и качества дисплеев.</p>
+            </article>
+            
+            <article class="card">
+                <h3>HTC Vive Focus 3</h3>
+                <p>Корпоративный стандарт для бизнес-приложений. Высокая надежность и продвинутый бизнес-менеджмент.</p>
+            </article>
+            
+            <article class="card">
+                <h3>Varjo XR-4</h3>
+                <p>Премиальная гарнитура для профессионального использования. Высокое разрешение и точное отслеживание глаз.</p>
+            </article>
+        </div>
+    </section>
+
+    <div class="bg-surface">
+        <section id="dev" class="container reveal">
+            <div class="section-header">
+                <h2>Стек технологий разработки</h2>
+                <p>Инструменты и движки для создания иммерсивных продуктов.</p>
+            </div>
+            
+            <div class="grid">
+                <article class="card">
+                    <h3>Unity</h3>
+                    <p>Самый популярный движок для мобильной и автономной VR/AR разработки. Огромное комьюнити, Asset Store и поддержка всех основных платформ. Язык: C#.</p>
+                    <a href="https://unity.com/ru/solutions/xr" target="_blank" rel="noopener noreferrer" class="card-link">unity.com →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>Unreal Engine 5</h3>
+                    <p>Стандарт для фотореалистичной визуализации и сложных промышленных симуляций. Blueprints позволяют создавать логику без кода. Языки: C++, Blueprints.</p>
+                    <a href="https://www.unrealengine.com/" target="_blank" rel="noopener noreferrer" class="card-link">unrealengine.com →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>WebXR + Three.js</h3>
+                    <p>Веб-технологии для создания XR-опыта прямо в браузере. Идеально для маркетинговых кампаний и быстрого прототипирования. Библиотеки: Three.js, A-Frame, React Three Fiber.</p>
+                    <a href="https://immersiveweb.dev/" target="_blank" rel="noopener noreferrer" class="card-link">immersiveweb.dev →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>Godot Engine</h3>
+                    <p>Открытый движок с растущей поддержкой XR. Бесплатный, легковесный, с собственным языком GDScript. Подходит для инди-разработчиков и образовательных проектов.</p>
+                    <a href="https://godotengine.org/" target="_blank" rel="noopener noreferrer" class="card-link">godotengine.org →</a>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <section id="cases" class="reveal">
+        <div class="section-header">
+            <h2>Кейсы внедрения в России</h2>
+            <p>Реальные примеры использования XR-технологий в крупных компаниях.</p>
+        </div>
+        
+        <div class="grid">
+            <article class="card">
+                <h3>Росатом</h3>
+                <p>Внедрение VR-технологий для обучения стропальщиков и персонала атомных станций. Позволяет отрабатывать навыки в безопасной цифровой среде и моделировать нештатные ситуации.</p>
+                <a href="https://rosatom.ru/press_center/news/rosatom-nachal-primenyat-vr-tekhnologii-pri-obuchenii-stropalshchikov" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
+            </article>
+            
+            <article class="card">
+                <h3>Газпром нефть шельф</h3>
+                <p>Создание VR-тренажера для повышения эффективности обучения работников. Включает функции повторного просмотра и моделирования аварийных ситуаций.</p>
+                <a href="https://shelf.gazprom-neft.ru/press-center/news/gazprom-neft-shelf-vnedril-virtualnuyu-realnost-v-obuchenie-sotrudnikov" target="_blank" rel="noopener noreferrer" class="card-link">Кейс →</a>
+            </article>
+            
+            <article class="card">
+                <h3>Газпром ЦПС</h3>
+                <p>Разработка инновационного VR-тренажера для отработки действий при ликвидации газонефтеводопроявлений на буровой установке. Внедрение в учебных центрах Краснодара.</p>
+                <a href="https://neftegaz.ru/news/vtrende/898875-gazprom-tsps-predstavil-vr-trenazher-dlya-likvidatsii-gazoneftevodoproyavleniy-na-burovoy/" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
+            </article>
+            
+            <article class="card">
+                <h3>Росэнергоатом</h3>
+                <p>Построение системы VR-обучения на отечественных технологиях для обеспечения безопасной и бесперебойной работы атомных станций.</p>
+                <a href="https://astra.ru/about/press-center/news/rosenergoatom-stroit-sistemu-vr-obucheniya-na-otechestvennykh-tekhnologiyakh-/" target="_blank" rel="noopener noreferrer" class="card-link">Проект →</a>
+            </article>
+        </div>
+    </section>
+
+    <div class="bg-surface">
+        <section id="education" class="container reveal">
+            <div class="section-header">
+                <h2>Образование и подготовка кадров</h2>
+                <p>Программы обучения и вузы, готовящие специалистов в области XR.</p>
+            </div>
+            
+            <div class="grid">
+                <article class="card">
+                    <h3>Varwin Education</h3>
+                    <p>Образовательная платформа для обучения программированию через создание интерактивных 3D/VR/AR-миров. Используется в школах, техникумах и вузах.</p>
+                    <a href="https://varwin.com/ru/education/" target="_blank" rel="noopener noreferrer" class="card-link">Платформа →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>VR Concept для образования</h3>
+                    <p>Обучает внедрению технологии VR в образование с 2021 года. Подготовлено более 1000 преподавателей. Флагманская программа МГПУ.</p>
+                    <a href="https://www.mgpu.ru/vr-v-obuchenii-flagmanskaya-obrazovatelnaya-programma-mgpu/" target="_blank" rel="noopener noreferrer" class="card-link">Программа →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>Вузы России</h3>
+                    <p>69 вузов и 30 колледжей предлагают программы обучения профессии VR/AR-разработчика. Включают Unity, Unreal Engine, 3D-моделирование и UX-дизайн.</p>
+                    <a href="https://postupi.online/professiya/vr-ar-razrabotchik-razrabotchik-virtualnoj-i-dopolnennoj-realnosti/vuzi/" target="_blank" rel="noopener noreferrer" class="card-link">Список вузов →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>Unity Learning</h3>
+                    <p>Официальная траектория обучения разработке VR-приложений от Unity. Включает практические уроки, проекты и сертификацию.</p>
+                    <a href="https://unity.com/ru/solutions/xr/games" target="_blank" rel="noopener noreferrer" class="card-link">Обучение →</a>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <section id="events" class="reveal">
+        <div class="section-header">
+            <h2>Конференции и события</h2>
+            <p>Ключевые мероприятия индустрии XR в России и мире.</p>
+        </div>
+        
+        <div class="grid">
+            <article class="card">
+                <h3>HI-TECH 2026</h3>
+                <p>XXXII Международная выставка инноваций. Санкт-Петербург, 14 апреля 2026. Секции: VR/AR-технологии на производстве, промышленный дизайн, микроэлектроника.</p>
+                <a href="https://www.expoforum.ru/calendar/vystavka-innovacij-hi-tech-2026/" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
+            </article>
+            
+            <article class="card">
+                <h3>IEEE VR Conference</h3>
+                <p>Премьерная международная конференция по виртуальной реальности и 3D-интерфейсам. Ведущая академическая площадка для обсуждения исследований.</p>
+                <a href="https://ieeevr.org/" target="_blank" rel="noopener noreferrer" class="card-link">ieeevr.org →</a>
+            </article>
+            
+            <article class="card">
+                <h3>AVRA Events</h3>
+                <p>Мероприятия Ассоциации VR/AR, включая ежегодный виртуальный саммит по образованию (октябрь 2025). Ожидается 1000+ участников и 20+ спикеров.</p>
+                <a href="https://www.thevrara.com/events" target="_blank" rel="noopener noreferrer" class="card-link">Календарь →</a>
+            </article>
+            
+            <article class="card">
+                <h3>AR/VR Policy Conference</h3>
+                <p>6-я ежегодная конференция по политике в области AR/VR. 24 сентября 2026. Обсуждение регулирования и стандартизации иммерсивных технологий.</p>
+                <a href="https://www.arvrpolicy.org/" target="_blank" rel="noopener noreferrer" class="card-link">Конференция →</a>
+            </article>
+        </div>
+    </section>
+
+    <div class="bg-surface">
+        <section id="resources" class="container reveal">
+            <div class="section-header">
+                <h2>Документация и ресурсы</h2>
+                <p>Полезные ссылки для разработчиков и исследователей.</p>
+            </div>
+            
+            <div class="grid">
+                <article class="card">
+                    <h3>MDN Web Docs</h3>
+                    <p>Полная документация по WebXR Device API от Mozilla. Включает примеры кода, руководства и справочник по API.</p>
+                    <a href="https://developer.mozilla.org/ru/docs/Web/API/WebXR_Device_API" target="_blank" rel="noopener noreferrer" class="card-link">Документация →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>Immersive Web</h3>
+                    <p>Официальный ресурс по веб-стандартам для VR/AR. Включает спецификации, примеры и информацию о поддержке браузерами.</p>
+                    <a href="https://immersiveweb.dev/" target="_blank" rel="noopener noreferrer" class="card-link">immersiveweb.dev →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>OpenXR Documentation</h3>
+                    <p>Официальная документация стандарта OpenXR от Khronos Group. Спецификации API, руководства разработчика и best practices.</p>
+                    <a href="https://www.khronos.org/openxr/" target="_blank" rel="noopener noreferrer" class="card-link">Документация →</a>
+                </article>
+                
+                <article class="card">
+                    <h3>VR Digest</h3>
+                    <p>Каталог компаний и ресурсов в сфере виртуальной и дополненной реальности в России. Новости и аналитика рынка.</p>
+                    <a href="https://vrdigest.ru/" target="_blank" rel="noopener noreferrer" class="card-link">vrdigest.ru →</a>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <section id="contact" class="reveal">
+        <div class="contact-box">
+            <h2>Связаться с владельцем проекта</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">
+                По вопросам сотрудничества, размещения информации или предложениям по развитию хаба.
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdg08G21_aBK4JVZR2XndkTWfAthG6bmidzqOnfYDQIyKTWUA/viewform?usp=pp_url&entry.1089268586=xrtech.ru&pageHistory=0,1" class="btn" target="_blank" rel="noopener noreferrer">
+                Открыть форму связи
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 XRTECH.RU. Цифровой актив. Все права защищены.</p>
-        <p style="margin-top: 8px; font-size: 0.8rem; color: #444455;">Сайт оптимизирован для современных браузеров. Не использует внешние библиотеки.</p>
+        <p>&copy; 2026 XRTECH.RU. Информационный хаб по технологиям расширенной реальности.</p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: var(--text-muted);">Все ссылки проверены и актуальны.</p>
     </footer>
 
-    <!-- Кнопка Вверх -->
     <div id="scroll-top" aria-label="Наверх">
         <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
     </div>
 
     <script>
-        // === 1. Мобильное меню ===
+        // === Мобильное меню ===
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         menuToggle.addEventListener('click', () => {
@@ -398,7 +676,7 @@
             });
         });
 
-        // === 2. Активный пункт меню при скролле ===
+        // === Активный пункт меню при скролле ===
         const sections = document.querySelectorAll('section, .bg-surface section');
         const navItems = document.querySelectorAll('.nav-links a');
         window.addEventListener('scroll', () => {
@@ -413,18 +691,16 @@
             });
         });
 
-        // === 3. Анимация появления при скролле ===
+        // === Анимация появления при скролле ===
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // === 4. Кнопка "Вверх" ===
+        // === Кнопка "Вверх" ===
         const scrollTopBtn = document.getElementById('scroll-top');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 600) scrollTopBtn.classList.add('visible');
@@ -434,13 +710,10 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // === 5. Продвинутый Canvas эффект (VR Grid) ===
+        // === Canvas эффект (интерактивная сетка) ===
         const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-        let animationId;
-        let mouseX = 0, mouseY = 0;
+        let width, height, particles = [], animationId, mouseX = 0, mouseY = 0;
 
         function resize() {
             width = canvas.width = window.innerWidth;
@@ -454,14 +727,14 @@
             mouseY = e.clientY;
         });
 
-        class Node {
+        class Particle {
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
                 this.vx = (Math.random() - 0.5) * 0.3;
                 this.vy = (Math.random() - 0.5) * 0.3;
                 this.size = Math.random() * 1.5 + 0.5;
-                this.baseAlpha = Math.random() * 0.5 + 0.1;
+                this.alpha = Math.random() * 0.5 + 0.1;
             }
             update() {
                 this.x += this.vx;
@@ -472,46 +745,42 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 240, 255, ${this.baseAlpha})`;
+                ctx.fillStyle = `rgba(0, 240, 255, ${this.alpha})`;
                 ctx.fill();
             }
         }
 
         function init() {
             particles = [];
-            const count = Math.min(Math.floor(width / 10), 120);
-            for (let i = 0; i < count; i++) particles.push(new Node());
+            const count = Math.min(Math.floor(width / 12), 100);
+            for (let i = 0; i < count; i++) particles.push(new Particle());
         }
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            
-            // Рисуем связи
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
                 
-                // Интерактивность с мышью
                 const dxMouse = mouseX - particles[i].x;
                 const dyMouse = mouseY - particles[i].y;
                 const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
                 if (distMouse < 150) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(112, 0, 255, ${0.2 - distMouse/750})`;
+                    ctx.strokeStyle = `rgba(112, 0, 255, ${0.15 - distMouse/1000})`;
                     ctx.lineWidth = 0.8;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(mouseX, mouseY);
                     ctx.stroke();
                 }
 
-                // Связи между частицами
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < 120) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.1 - dist/1200})`;
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.08 - dist/1500})`;
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
