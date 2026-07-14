@@ -4,85 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="XRTECH.RU — информационный хаб по технологиям расширенной реальности (XR, VR, AR, MR). Стандарты, исследования, компании, кейсы внедрения и образовательные программы в России.">
-    <meta name="keywords" content="XR, VR, AR, MR, виртуальная реальность, дополненная реальность, смешанная реальность, OpenXR, WebXR, Россия, исследования, статистика">
+    <meta name="keywords" content="XR, VR, AR, MR, виртуальная реальность, дополненная реальность, смешанная реальность, OpenXR, WebXR, Россия, исследования, статистика, spatial computing">
     <meta name="author" content="XRTECH.RU">
     <meta name="theme-color" content="#050508">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://xrtech.ru">
     
     <meta property="og:title" content="XRTECH.RU — Хаб по технологиям расширенной реальности">
     <meta property="og:description" content="Полная информация о XR-индустрии в России: стандарты, компании, исследования, кейсы и образовательные программы.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://xrtech.ru">
+    <meta property="og:image" content="https://xrtech.ru/og-image.png">
+    <meta property="og:locale" content="ru_RU">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="XRTECH.RU — Хаб по технологиям расширенной реальности">
+    <meta name="twitter:description" content="Полная информация о XR-индустрии в России: стандарты, компании, исследования, кейсы и образовательные программы.">
     
     <title>XRTECH.RU — Информационный хаб по технологиям расширенной реальности</title>
     
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "XRTECH.RU",
+        "url": "https://xrtech.ru",
+        "description": "Информационный хаб по технологиям расширенной реальности в России",
+        "inLanguage": "ru",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://xrtech.ru/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
     <style>
+        @property --gradient-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        @property --glow-opacity {
+            syntax: '<number>';
+            initial-value: 0;
+            inherits: false;
+        }
+
         :root {
-            --bg-deep: #050508;
-            --bg-surface: #0a0a12;
-            --bg-card: #111118;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b8;
-            --text-muted: #666680;
-            --accent-cyan: #00f0ff;
-            --accent-purple: #7000ff;
-            --accent-pink: #ff006e;
+            --bg-deep: #030306;
+            --bg-surface: #08080f;
+            --bg-card: #0d0d18;
+            --bg-card-hover: #12122a;
+            --text-primary: #f0f0ff;
+            --text-secondary: #9898b8;
+            --text-muted: #555570;
+            --accent-cyan: #00e5ff;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
             --glass-bg: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-border-hover: rgba(0, 229, 255, 0.2);
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: all 0.2s ease;
+            --radius: 20px;
+            --radius-sm: 12px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
         
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-deep);
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === Scroll Progress Bar === */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 3px; z-index: 10000;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            width: 0%; transition: width 0.1s linear;
+            box-shadow: 0 0 10px var(--accent-cyan);
         }
 
         a { color: var(--accent-cyan); text-decoration: none; transition: var(--transition); }
-        a:hover { color: var(--accent-purple); text-shadow: 0 0 8px rgba(112, 0, 255, 0.5); }
+        a:hover { color: var(--accent-purple); text-shadow: 0 0 12px rgba(139, 92, 246, 0.5); }
 
         /* === Типографика === */
-        h1, h2, h3, h4 { color: var(--text-primary); line-height: 1.1; letter-spacing: -0.02em; }
+        h1, h2, h3, h4 { color: var(--text-primary); line-height: 1.1; letter-spacing: -0.03em; font-weight: 800; }
         h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 40%, var(--accent-purple) 80%, var(--accent-pink) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 800;
             margin-bottom: 1.5rem;
         }
-        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
-        h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
-        .section-header { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
-        .section-header p { font-size: 1.1rem; color: var(--text-secondary); margin-top: 1rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1rem; }
+        h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .section-header { text-align: center; max-width: 850px; margin: 0 auto 4rem; }
+        .section-header p { font-size: 1.15rem; color: var(--text-secondary); margin-top: 1rem; }
+        .section-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 100px; padding: 6px 16px;
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.08em;
+            margin-bottom: 1.2rem;
+        }
+        .section-badge svg { width: 14px; height: 14px; }
 
         /* === Навигация === */
         header {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(5, 5, 8, 0.85);
-            backdrop-filter: blur(16px);
+            background: rgba(3, 3, 6, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--glass-border);
         }
         nav {
-            max-width: 1400px; margin: 0 auto; padding: 1.2rem 24px;
+            max-width: 1400px; margin: 0 auto; padding: 1rem 24px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.03em; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.03em; display: flex; align-items: center; gap: 8px; }
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon svg { width: 20px; height: 20px; fill: white; }
         .logo span { color: var(--accent-cyan); }
         
-        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
         .nav-links a {
-            color: var(--text-secondary); font-weight: 500; font-size: 0.9rem;
-            position: relative; padding: 4px 0; text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--text-secondary); font-weight: 500; font-size: 0.85rem;
+            position: relative; padding: 6px 0; text-transform: uppercase; letter-spacing: 0.06em;
         }
         .nav-links a::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--accent-cyan); transition: var(--transition);
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transition: var(--transition); border-radius: 2px;
         }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
         .nav-links a.active { color: var(--accent-cyan); }
@@ -93,41 +161,85 @@
         #hero {
             position: relative; min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 120px 24px 80px; overflow: hidden;
+            text-align: center; padding: 140px 24px 100px; overflow: hidden;
         }
-        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.4; }
+        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5; }
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, var(--bg-deep) 80%);
+            background: radial-gradient(ellipse at center, transparent 0%, var(--bg-deep) 75%);
             z-index: 1; pointer-events: none;
         }
+        .hero-glow {
+            position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, rgba(139, 92, 246, 0.04) 40%, transparent 70%);
+            z-index: 0; pointer-events: none;
+            animation: pulseGlow 4s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+        }
         .hero-content { position: relative; z-index: 2; max-width: 1000px; }
-        .hero-content p { font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 2rem; color: var(--text-secondary); max-width: 750px; margin-left: auto; margin-right: auto; }
+        .hero-content p { font-size: clamp(1.1rem, 2vw, 1.35rem); margin-bottom: 2.5rem; color: var(--text-secondary); max-width: 750px; margin-left: auto; margin-right: auto; }
+        .hero-stats {
+            display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; flex-wrap: wrap;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat-value { font-size: 2rem; font-weight: 800; color: var(--accent-cyan); }
+        .hero-stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
 
         .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-            color: #ffffff; padding: 16px 36px; border-radius: 8px; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: #ffffff; padding: 16px 40px; border-radius: 12px; font-weight: 700;
             font-size: 1rem; letter-spacing: 0.02em;
-            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 4px 24px rgba(0, 229, 255, 0.25), inset 0 1px 0 rgba(255,255,255,0.1);
             transition: var(--transition); border: none; cursor: pointer;
+            position: relative; overflow: hidden;
         }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(112, 0, 255, 0.4); color: #fff; }
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn:hover::before { left: 100%; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(139, 92, 246, 0.4); color: #fff; }
+        .btn-outline {
+            background: transparent; border: 1px solid var(--glass-border-hover);
+            box-shadow: none;
+        }
+        .btn-outline:hover { background: rgba(0, 229, 255, 0.05); border-color: var(--accent-cyan); }
 
         /* === Секции === */
-        section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; }
-        .bg-surface { background-color: var(--bg-surface); max-width: 100%; padding: 100px 24px; }
+        section { padding: 120px 24px; max-width: 1400px; margin: 0 auto; }
+        .bg-surface { background-color: var(--bg-surface); max-width: 100%; padding: 120px 24px; position: relative; }
+        .bg-surface::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        }
         .bg-surface .container { max-width: 1400px; margin: 0 auto; }
 
+        /* === Bento Grid === */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .bento-grid .span-2 { grid-column: span 2; }
+        .bento-grid .span-3 { grid-column: span 3; }
+        .bento-grid .span-4 { grid-column: span 4; }
+        .bento-grid .row-2 { grid-row: span 2; }
+
         /* === Карточки === */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
         .grid-3 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
         .grid-4 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
         
         .card {
             background: var(--bg-card);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
+            border-radius: var(--radius);
             padding: 32px;
             transition: var(--transition);
             display: flex;
@@ -138,47 +250,122 @@
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
+            top: 0; left: 0; right: 0; height: 3px;
             background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
             opacity: 0;
             transition: opacity 0.4s ease;
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.03) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
         }
         .card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(0, 240, 255, 0.2);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px);
+            border-color: var(--glass-border-hover);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 229, 255, 0.05);
+            background: var(--bg-card-hover);
         }
         .card:hover::before { opacity: 1; }
+        .card:hover::after { opacity: 1; }
 
         .card-icon {
-            width: 56px; height: 56px;
-            background: rgba(0, 240, 255, 0.05);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 12px;
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        .card:hover .card-icon {
+            border-color: rgba(0, 229, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+            transform: scale(1.05);
         }
         .card-icon svg { width: 28px; height: 28px; stroke: var(--accent-cyan); fill: none; stroke-width: 1.5; }
-        .card h3 { font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--text-primary); }
+        .card h3 { font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-primary); }
         .card p { font-size: 0.95rem; color: var(--text-secondary); flex-grow: 1; margin-bottom: 1rem; }
         .card-link { font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; margin-top: auto; }
+        .card-tag {
+            display: inline-block; padding: 4px 10px; border-radius: 6px;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .tag-vr { background: rgba(139, 92, 246, 0.15); color: var(--accent-purple); border: 1px solid rgba(139, 92, 246, 0.3); }
+        .tag-ar { background: rgba(0, 229, 255, 0.1); color: var(--accent-cyan); border: 1px solid rgba(0, 229, 255, 0.3); }
+        .tag-mr { background: rgba(236, 72, 153, 0.1); color: var(--accent-pink); border: 1px solid rgba(236, 72, 153, 0.3); }
+        .tag-hot { background: rgba(245, 158, 11, 0.1); color: var(--accent-orange); border: 1px solid rgba(245, 158, 11, 0.3); }
 
         /* === Статистика === */
         .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 32px; margin-bottom: 3rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px; margin-bottom: 3rem;
         }
         .stat-card {
             background: var(--bg-card);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 28px;
+            border-radius: var(--radius);
+            padding: 32px;
             text-align: center;
             transition: var(--transition);
+            position: relative; overflow: hidden;
         }
-        .stat-card:hover { border-color: var(--accent-cyan); transform: translateY(-4px); }
-        .stat-card h3 { font-size: 2.8rem; color: var(--accent-cyan); margin-bottom: 0.5rem; font-weight: 800; }
-        .stat-card p { font-size: 0.95rem; color: var(--text-secondary); }
+        .stat-card::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+        }
+        .stat-card:hover { border-color: var(--accent-cyan); transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0, 229, 255, 0.1); }
+        .stat-card h3 { font-size: 3rem; color: var(--accent-cyan); margin-bottom: 0.5rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+        .stat-card p { font-size: 0.9rem; color: var(--text-secondary); }
+        .stat-card .stat-trend { display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem; color: var(--accent-green); margin-top: 8px; font-weight: 600; }
+        .stat-card .stat-trend svg { width: 14px; height: 14px; }
+
+        /* === Рейтинги === */
+        .rating-bar {
+            height: 8px; border-radius: 4px; background: rgba(255,255,255,0.05);
+            margin-top: 8px; overflow: hidden; position: relative;
+        }
+        .rating-bar-fill {
+            height: 100%; border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            width: 0%; transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .rating-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 4px; }
+        .rating-label span:first-child { color: var(--text-secondary); }
+        .rating-label span:last-child { color: var(--accent-cyan); font-weight: 600; }
+
+        /* === SVG График === */
+        .chart-container {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-top: 2rem;
+        }
+        .chart-title { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 1.5rem; font-weight: 700; }
+        .chart-svg { width: 100%; height: auto; }
+
+        /* === Timeline === */
+        .timeline { position: relative; padding-left: 40px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+        }
+        .timeline-item { position: relative; margin-bottom: 2.5rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -33px; top: 6px;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: var(--bg-deep); border: 3px solid var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+        }
+        .timeline-year { font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+        .timeline-title { font-size: 1.1rem; color: var(--text-primary); font-weight: 700; margin-bottom: 4px; }
+        .timeline-desc { font-size: 0.9rem; color: var(--text-secondary); }
 
         /* === Таблица / Список === */
         .info-list { list-style: none; }
@@ -199,20 +386,28 @@
 
         /* === Контакты === */
         .contact-box {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.03), rgba(112, 0, 255, 0.03));
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.03), rgba(139, 92, 246, 0.03));
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: 28px;
             padding: 60px 40px;
             max-width: 700px;
             margin: 0 auto;
             text-align: center;
+            position: relative; overflow: hidden;
         }
+        .contact-box::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 229, 255, 0.03), transparent, rgba(139, 92, 246, 0.03), transparent);
+            animation: rotateConic 10s linear infinite;
+        }
+        @keyframes rotateConic { to { transform: rotate(360deg); } }
+        .contact-box > * { position: relative; z-index: 1; }
 
         /* === Scroll to Top === */
         #scroll-top {
             position: fixed; bottom: 30px; right: 30px;
-            width: 50px; height: 50px;
-            background: rgba(5, 5, 8, 0.9);
+            width: 52px; height: 52px;
+            background: rgba(3, 3, 6, 0.9);
             border: 1px solid var(--accent-cyan);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -222,15 +417,48 @@
             z-index: 999;
         }
         #scroll-top.visible { opacity: 1; pointer-events: all; }
-        #scroll-top:hover { background: var(--accent-cyan); transform: translateY(-3px); }
+        #scroll-top:hover { background: var(--accent-cyan); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3); }
         #scroll-top svg { width: 24px; height: 24px; fill: var(--accent-cyan); transition: fill 0.3s; }
         #scroll-top:hover svg { fill: var(--bg-deep); }
 
+        /* === Footer === */
+        footer {
+            text-align: center; padding: 60px 24px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted); font-size: 0.9rem;
+        }
+        footer p { margin-bottom: 4px; }
+        footer .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+        footer .footer-links a { color: var(--text-secondary); font-size: 0.85rem; }
+
         /* === Анимации === */
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
 
         /* === Адаптивность === */
+        @media (max-width: 1200px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-grid .span-3 { grid-column: span 2; }
+            .bento-grid .span-4 { grid-column: span 2; }
+        }
         @media (max-width: 1024px) {
             .grid, .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
         }
@@ -238,22 +466,54 @@
             .menu-toggle { display: block; }
             .nav-links {
                 position: fixed; top: 70px; left: 0; width: 100%;
-                background: rgba(5, 5, 8, 0.98); backdrop-filter: blur(16px);
+                background: rgba(3, 3, 6, 0.98); backdrop-filter: blur(20px);
                 flex-direction: column; align-items: center; padding: 2rem 0;
                 gap: 1.5rem; transform: translateY(-150%); transition: transform 0.4s ease;
+                border-bottom: 1px solid var(--glass-border);
             }
             .nav-links.active { transform: translateY(0); }
             .btn { width: 100%; justify-content: center; }
-            section { padding: 60px 20px; }
+            section { padding: 80px 20px; }
             .contact-box { padding: 40px 24px; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-grid .span-2, .bento-grid .span-3, .bento-grid .span-4 { grid-column: span 1; }
+            .hero-stats { gap: 1.5rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        /* === Accessibility === */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+        }
+
+        /* === Focus styles === */
+        :focus-visible {
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: 3px;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
 
+    <div id="scroll-progress"></div>
+
     <header>
         <nav>
-            <div class="logo">XR<span>TECH</span>.RU</div>
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M2 8h20v8H2z M6 12h2 M16 12h2 M12 8v8"/></svg>
+                </div>
+                XR<span>TECH</span>.RU
+            </div>
             <button class="menu-toggle" aria-label="Меню">☰</button>
             <ul class="nav-links">
                 <li><a href="#about">Технологии</a></li>
@@ -271,76 +531,169 @@
     <section id="hero">
         <canvas id="hero-canvas"></canvas>
         <div class="hero-overlay"></div>
+        <div class="hero-glow"></div>
         <div class="hero-content reveal">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                Обновление 2026
+            </div>
             <h1>Информационный хаб<br>по технологиям XR</h1>
             <p>Полная информация о рынке расширенной реальности в России: стандарты, исследования, ключевые игроки, кейсы внедрения и образовательные программы.</p>
-            <a href="#about" class="btn">Изучить технологии</a>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="#about" class="btn">Изучить технологии</a>
+                <a href="#market" class="btn btn-outline">Статистика рынка</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value" data-count="253.5" data-prefix="$" data-suffix="B">$0</div>
+                    <div class="hero-stat-label">Глобальный рынок XR</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" data-count="14.5" data-suffix="M">0</div>
+                    <div class="hero-stat-label">Устройств отгружено</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" data-count="87" data-prefix="+" data-suffix="%">0</div>
+                    <div class="hero-stat-label">Рост VR в 2026</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" data-count="69" data-suffix="+">0</div>
+                    <div class="hero-stat-label">Вузов с XR-программами</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="about" class="reveal">
         <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5"/></svg>
+                Основы
+            </div>
             <h2>Что такое XR?</h2>
             <p>Extended Reality (XR) — зонтичный термин, объединяющий все формы иммерсивных технологий, стирающих границу между физическим и цифровым мирами.</p>
         </div>
         
         <div class="grid-3">
-            <article class="card">
+            <article class="card reveal reveal-delay-1">
+                <span class="card-tag tag-vr">VR</span>
                 <div class="card-icon">
                     <svg viewBox="0 0 24 24"><path d="M2 8h20v8H2z M6 12h2 M16 12h2 M12 8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <h3>VR (Виртуальная реальность)</h3>
                 <p>Полное погружение пользователя в смоделированную цифровую среду через гарнитуру. Применяется для обучения, симуляций, архитектурной визуализации и корпоративных тренингов.</p>
+                <ul class="info-list" style="margin-top: auto;">
+                    <li>Идеально для: обучение, симуляции</li>
+                    <li>Устройства: Quest 3, Pico 4, Vive</li>
+                </ul>
             </article>
             
-            <article class="card">
+            <article class="card reveal reveal-delay-2">
+                <span class="card-tag tag-ar">AR</span>
                 <div class="card-icon">
                     <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 4.45 10 10 10s10-4.45 10-10V7l-10-5z M8 12h8 M12 8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <h3>AR (Дополненная реальность)</h3>
                 <p>Наложение цифровых объектов на реальный мир через камеры смартфонов или прозрачные дисплеи. Используется в ритейле, логистике, маркетинге и полевой диагностике оборудования.</p>
+                <ul class="info-list" style="margin-top: auto;">
+                    <li>Идеально для: ритейл, маркетинг</li>
+                    <li>Платформы: ARKit, ARCore</li>
+                </ul>
             </article>
             
-            <article class="card">
+            <article class="card reveal reveal-delay-3">
+                <span class="card-tag tag-mr">MR</span>
                 <div class="card-icon">
                     <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <h3>MR (Смешанная реальность)</h3>
                 <p>Высшая форма XR, где физические и цифровые объекты взаимодействуют в реальном времени. Например, виртуальная панель управления, привязанная к реальному промышленному станку.</p>
+                <ul class="info-list" style="margin-top: auto;">
+                    <li>Идеально для: промышленность</li>
+                    <li>Устройства: Vision Pro, Quest 3</li>
+                </ul>
             </article>
+        </div>
+
+        <!-- XR Spectrum Diagram -->
+        <div class="chart-container reveal" style="margin-top: 3rem;">
+            <div class="chart-title">Спектр Extended Reality: от реальности к виртуальности</div>
+            <svg viewBox="0 0 800 120" class="chart-svg" role="img" aria-label="Спектр XR технологий">
+                <defs>
+                    <linearGradient id="spectrumGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                        <stop offset="33%" style="stop-color:#00e5ff;stop-opacity:1" />
+                        <stop offset="66%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <rect x="50" y="40" width="700" height="16" rx="8" fill="url(#spectrumGrad)" opacity="0.8"/>
+                <text x="50" y="80" fill="#10b981" font-size="12" font-weight="700">Реальный мир</text>
+                <text x="220" y="80" fill="#00e5ff" font-size="12" font-weight="700">AR</text>
+                <text x="420" y="80" fill="#8b5cf6" font-size="12" font-weight="700">MR</text>
+                <text x="650" y="80" fill="#ec4899" font-size="12" font-weight="700">VR</text>
+                <text x="50" y="100" fill="#555570" font-size="10">← Больше реальности</text>
+                <text x="650" y="100" fill="#555570" font-size="10">Больше виртуальности →</text>
+                <!-- Markers -->
+                <circle cx="50" cy="48" r="6" fill="#10b981"/>
+                <circle cx="270" cy="48" r="6" fill="#00e5ff"/>
+                <circle cx="470" cy="48" r="6" fill="#8b5cf6"/>
+                <circle cx="700" cy="48" r="6" fill="#ec4899"/>
+                <text x="270" y="30" fill="#9898b8" font-size="10" text-anchor="middle">Дополненная</text>
+                <text x="470" y="30" fill="#9898b8" font-size="10" text-anchor="middle">Смешанная</text>
+                <text x="700" y="30" fill="#9898b8" font-size="10" text-anchor="middle">Виртуальная</text>
+            </svg>
         </div>
     </section>
 
     <div class="bg-surface">
         <section id="standards" class="container reveal">
             <div class="section-header">
+                <div class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Спецификации
+                </div>
                 <h2>Стандарты и спецификации</h2>
                 <p>Открытые стандарты, обеспечивающие кроссплатформенность и совместимость XR-приложений.</p>
             </div>
             
             <div class="grid">
-                <article class="card">
+                <article class="card reveal reveal-delay-1">
+                    <span class="card-tag tag-hot">Ключевой</span>
                     <h3>OpenXR</h3>
                     <p>Открытый, бесплатный стандарт API от Khronos Group, обеспечивающий высокую производительность и кроссплатформенность XR-приложений. Позволяет писать код один раз и запускать на различных устройствах.</p>
                     <a href="https://www.khronos.org/openxr/" target="_blank" rel="noopener noreferrer" class="card-link">khronos.org/openxr →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-2">
+                    <span class="card-tag tag-hot">Ключевой</span>
                     <h3>WebXR Device API</h3>
                     <p>Веб-стандарт от W3C для доступа к устройствам VR/AR прямо из браузера. Позволяет создавать иммерсивный опыт без установки приложений, что критично для массового охвата.</p>
                     <a href="https://developer.mozilla.org/ru/docs/Web/API/WebXR_Device_API" target="_blank" rel="noopener noreferrer" class="card-link">MDN WebXR →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-3">
                     <h3>ARCore (Google)</h3>
                     <p>Платформа Google для создания AR-приложений на Android. Обеспечивает отслеживание движения, понимание окружающей среды и взаимодействие с освещением.</p>
                     <a href="https://developers.google.com/ar" target="_blank" rel="noopener noreferrer" class="card-link">developers.google.com/ar →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-4">
                     <h3>ARKit (Apple)</h3>
                     <p>Фреймворк Apple для создания AR-опыта на iOS и iPadOS. Включает отслеживание лиц, обнаружение объектов и интеграцию с RealityKit.</p>
                     <a href="https://developer.apple.com/augmented-reality/" target="_blank" rel="noopener noreferrer" class="card-link">developer.apple.com →</a>
+                </article>
+
+                <article class="card reveal reveal-delay-1">
+                    <h3>glTF 2.0</h3>
+                    <p>«JPEG для 3D» — открытый стандарт для эффективной передачи и загрузки 3D-контента. Основной формат для WebXR и большинства XR-движков.</p>
+                    <a href="https://www.khronos.org/gltf/" target="_blank" rel="noopener noreferrer" class="card-link">khronos.org/gltf →</a>
+                </article>
+                
+                <article class="card reveal reveal-delay-2">
+                    <h3>USD (Universal Scene Description)</h3>
+                    <p>Открытый формат от Pixar для описания 3D-сцен. Используется в Apple Vision Pro, NVIDIA Omniverse и промышленных XR-решениях.</p>
+                    <a href="https://openusd.org/" target="_blank" rel="noopener noreferrer" class="card-link">openusd.org →</a>
                 </article>
             </div>
         </section>
@@ -348,89 +701,209 @@
 
     <section id="market" class="reveal">
         <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                Аналитика
+            </div>
             <h2>Рынок XR: исследования и статистика</h2>
             <p>Аналитика глобального и российского рынков расширенной реальности.</p>
         </div>
         
         <div class="stats-grid">
-            <div class="stat-card">
-                <h3>$253.5B</h3>
+            <div class="stat-card reveal reveal-delay-1">
+                <h3><span class="counter" data-target="253.5" data-prefix="$" data-suffix="B">$0</span></h3>
                 <p>Объем глобального рынка XR в 2025 году</p>
+                <div class="stat-trend">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+                    +36.4% YoY
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>+87%</h3>
+            <div class="stat-card reveal reveal-delay-2">
+                <h3><span class="counter" data-target="87" data-prefix="+" data-suffix="%">0</span></h3>
                 <p>Ожидаемый рост рынка VR в 2026 году</p>
+                <div class="stat-trend">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+                    Восстановление
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>14.5M</h3>
-                <p>Устройств XR отгружено в 2025 году (+41.6% YoY)</p>
+            <div class="stat-card reveal reveal-delay-3">
+                <h3><span class="counter" data-target="14.5" data-suffix="M">0</span></h3>
+                <p>Устройств XR отгружено в 2025 году</p>
+                <div class="stat-trend">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+                    +41.6% YoY
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>24%</h3>
+            <div class="stat-card reveal reveal-delay-4">
+                <h3><span class="counter" data-target="24" data-suffix="%">0</span></h3>
                 <p>Рост внедрения VR в обучении персонала</p>
+                <div class="stat-trend">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+                    Стабильный
+                </div>
             </div>
         </div>
 
-        <div class="grid">
-            <article class="card">
+        <!-- SVG Bar Chart: Market Growth -->
+        <div class="chart-container reveal">
+            <div class="chart-title">Прогноз роста глобального рынка XR (млрд $)</div>
+            <svg viewBox="0 0 800 300" class="chart-svg" id="market-chart" role="img" aria-label="График роста рынка XR">
+                <!-- Grid lines -->
+                <line x1="80" y1="40" x2="80" y2="240" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                <line x1="80" y1="240" x2="760" y2="240" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="80" y1="190" x2="760" y2="190" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4"/>
+                <line x1="80" y1="140" x2="760" y2="140" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4"/>
+                <line x1="80" y1="90" x2="760" y2="90" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4"/>
+                
+                <!-- Y-axis labels -->
+                <text x="70" y="244" fill="#555570" font-size="11" text-anchor="end">0</text>
+                <text x="70" y="194" fill="#555570" font-size="11" text-anchor="end">1000</text>
+                <text x="70" y="144" fill="#555570" font-size="11" text-anchor="end">2000</text>
+                <text x="70" y="94" fill="#555570" font-size="11" text-anchor="end">3000</text>
+                <text x="70" y="44" fill="#555570" font-size="11" text-anchor="end">4000</text>
+                
+                <!-- Bars -->
+                <g class="chart-bars">
+                    <rect x="110" y="227" width="50" height="13" rx="4" fill="url(#barGrad)" class="chart-bar" data-height="13"/>
+                    <text x="135" y="260" fill="#9898b8" font-size="10" text-anchor="middle">2023</text>
+                    <text x="135" y="222" fill="#00e5ff" font-size="10" text-anchor="middle" font-weight="600">$97B</text>
+                    
+                    <rect x="200" y="221" width="50" height="19" rx="4" fill="url(#barGrad)" class="chart-bar" data-height="19"/>
+                    <text x="225" y="260" fill="#9898b8" font-size="10" text-anchor="middle">2024</text>
+                    <text x="225" y="216" fill="#00e5ff" font-size="10" text-anchor="middle" font-weight="600">$186B</text>
+                    
+                    <rect x="290" y="214" width="50" height="26" rx="4" fill="url(#barGrad)" class="chart-bar" data-height="26"/>
+                    <text x="315" y="260" fill="#9898b8" font-size="10" text-anchor="middle">2025</text>
+                    <text x="315" y="209" fill="#00e5ff" font-size="10" text-anchor="middle" font-weight="600">$253B</text>
+                    
+                    <rect x="380" y="201" width="50" height="39" rx="4" fill="url(#barGrad)" class="chart-bar" data-height="39"/>
+                    <text x="405" y="260" fill="#9898b8" font-size="10" text-anchor="middle">2026</text>
+                    <text x="405" y="196" fill="#00e5ff" font-size="10" text-anchor="middle" font-weight="600">$472B</text>
+                    
+                    <rect x="470" y="182" width="50" height="58" rx="4" fill="url(#barGrad)" class="chart-bar" data-height="58"/>
+                    <text x="495" y="260" fill="#9898b8" font-size="10" text-anchor="middle">2028</text>
+                    <text x="495" y="177" fill="#00e5ff" font-size="10" text-anchor="middle" font-weight="600">$1.1T</text>
+                    
+                    <rect x="560" y="145" width="50" height="95" rx="4" fill="url(#barGrad)" class="chart-bar" data-height="95"/>
+                    <text x="585" y="260" fill="#9898b8" font-size="10" text-anchor="middle">2030</text>
+                    <text x="585" y="140" fill="#00e5ff" font-size="10" text-anchor="middle" font-weight="600">$1.9T</text>
+                    
+                    <rect x="650" y="65" width="50" height="175" rx="4" fill="url(#barGrad)" class="chart-bar" data-height="175"/>
+                    <text x="675" y="260" fill="#9898b8" font-size="10" text-anchor="middle">2034</text>
+                    <text x="675" y="60" fill="#00e5ff" font-size="10" text-anchor="middle" font-weight="600">$4.4T</text>
+                </g>
+                
+                <defs>
+                    <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#00e5ff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="grid" style="margin-top: 2rem;">
+            <article class="card reveal">
                 <h3>Глобальные тренды</h3>
                 <p>По данным Research Nester, объем рынка XR в 2025 году составил $252.6 млрд и, по прогнозам, достигнет $4441.5 млрд к 2034 году. Основные драйверы: корпоративное обучение, промышленность и ритейл.</p>
                 <a href="https://www.researchnester.com/ru/reports/extended-reality-market/4863" target="_blank" rel="noopener noreferrer" class="card-link">Исследование →</a>
             </article>
             
-            <article class="card">
+            <article class="card reveal">
                 <h3>Российский рынок</h3>
                 <p>В 2025 году рынок немного просел (–12%) из-за переноса крупных релизов, но в 2026 году аналитики ожидают мощный рост примерно +87%. Ключевые сегменты: промышленность, образование, ритейл.</p>
                 <a href="https://business.another-world.com/blog/vr-budushchee" target="_blank" rel="noopener noreferrer" class="card-link">Аналитика →</a>
             </article>
             
-            <article class="card">
+            <article class="card reveal">
                 <h3>Отраслевое распределение</h3>
                 <p>По статистике 2026 года: обучение персонала — рост 24%, производство — 21%, автомобильная отрасль — 19%, маркетинг и реклама — 16%. Корпоративный сегмент показывает стабильный рост.</p>
                 <a href="https://vrtrend.ru/blog/statistika-vr-dlya-industrii-obucheniya-i-obrazovaniya-v-2026" target="_blank" rel="noopener noreferrer" class="card-link">Статистика →</a>
             </article>
+        </div>
+
+        <!-- Industry Distribution Chart -->
+        <div class="chart-container reveal" style="margin-top: 2rem;">
+            <div class="chart-title">Распределение внедрения XR по отраслям (2026)</div>
+            <svg viewBox="0 0 800 200" class="chart-svg" id="industry-chart" role="img" aria-label="Распределение по отраслям">
+                <!-- Horizontal bars -->
+                <g class="industry-bars">
+                    <text x="120" y="35" fill="#9898b8" font-size="12" text-anchor="end">Обучение</text>
+                    <rect x="130" y="22" width="0" height="20" rx="4" fill="url(#indGrad1)" class="ind-bar" data-width="480"/>
+                    <text x="620" y="36" fill="#00e5ff" font-size="11" font-weight="600">24%</text>
+                    
+                    <text x="120" y="70" fill="#9898b8" font-size="12" text-anchor="end">Производство</text>
+                    <rect x="130" y="57" width="0" height="20" rx="4" fill="url(#indGrad2)" class="ind-bar" data-width="420"/>
+                    <text x="560" y="71" fill="#8b5cf6" font-size="11" font-weight="600">21%</text>
+                    
+                    <text x="120" y="105" fill="#9898b8" font-size="12" text-anchor="end">Автопром</text>
+                    <rect x="130" y="92" width="0" height="20" rx="4" fill="url(#indGrad3)" class="ind-bar" data-width="380"/>
+                    <text x="520" y="106" fill="#ec4899" font-size="11" font-weight="600">19%</text>
+                    
+                    <text x="120" y="140" fill="#9898b8" font-size="12" text-anchor="end">Маркетинг</text>
+                    <rect x="130" y="127" width="0" height="20" rx="4" fill="url(#indGrad4)" class="ind-bar" data-width="320"/>
+                    <text x="460" y="141" fill="#f59e0b" font-size="11" font-weight="600">16%</text>
+                    
+                    <text x="120" y="175" fill="#9898b8" font-size="12" text-anchor="end">Ритейл</text>
+                    <rect x="130" y="162" width="0" height="20" rx="4" fill="url(#indGrad5)" class="ind-bar" data-width="240"/>
+                    <text x="380" y="176" fill="#10b981" font-size="11" font-weight="600">12%</text>
+                </g>
+                
+                <defs>
+                    <linearGradient id="indGrad1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00e5ff"/><stop offset="100%" style="stop-color:#00e5ff;stop-opacity:0.5"/></linearGradient>
+                    <linearGradient id="indGrad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.5"/></linearGradient>
+                    <linearGradient id="indGrad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ec4899"/><stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.5"/></linearGradient>
+                    <linearGradient id="indGrad4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.5"/></linearGradient>
+                    <linearGradient id="indGrad5" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#10b981"/><stop offset="100%" style="stop-color:#10b981;stop-opacity:0.5"/></linearGradient>
+                </defs>
+            </svg>
         </div>
     </section>
 
     <div class="bg-surface">
         <section id="companies" class="container reveal">
             <div class="section-header">
+                <div class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    Экосистема
+                </div>
                 <h2>Ключевые игроки рынка РФ</h2>
                 <p>Российские компании, формирующие индустрию XR-разработки.</p>
             </div>
             
             <div class="grid">
-                <article class="card">
+                <article class="card reveal reveal-delay-1">
+                    <span class="card-tag tag-hot">Лидер</span>
                     <h3>Varwin</h3>
                     <p>Платформа для создания VR/AR-приложений без глубоких знаний кода (no-code/low-code). Лидер в сегменте образовательного и корпоративного контента. Работает в 24+ странах с 2015 года.</p>
                     <a href="https://varwin.com/" target="_blank" rel="noopener noreferrer" class="card-link">varwin.com →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-2">
                     <h3>Modum Lab</h3>
                     <p>Разработка сложных VR-тренажеров с интеграцией систем анализа речи и жестикуляции. Клиенты: крупные промышленные и энергетические холдинги, включая Газпром бурение.</p>
                     <a href="https://modumlab.com/" target="_blank" rel="noopener noreferrer" class="card-link">modumlab.com →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-3">
                     <h3>VRT</h3>
                     <p>Создание иммерсивных решений для промышленности, образования и ритейла. Специализируются на кроссплатформенных VR-продуктах и цифровых двойниках.</p>
                     <a href="https://vrt.one/" target="_blank" rel="noopener noreferrer" class="card-link">vrt.one →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-4">
                     <h3>LikeVR Studio</h3>
                     <p>Студия разработки VR/AR решений. Более 300 реализованных проектов для крупных брендов и IT-компаний. Специализация: корпоративные тренажеры и образовательные платформы.</p>
                     <a href="https://likevr.ru/" target="_blank" rel="noopener noreferrer" class="card-link">likevr.ru →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-1">
                     <h3>Enter VR</h3>
                     <p>Одна из ведущих компаний в России по разработке приложений виртуальной и дополненной реальности. Фокус на B2B-сегменте и корпоративных решениях.</p>
                     <a href="https://vrdigest.ru/companies/" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-2">
                     <h3>Ассоциация VR/AR (AVRA)</h3>
                     <p>Российская ассоциация, объединяющая участников рынка. Продвигает обмен опытом, проводит профильные конференции и представляет интересы индустрии.</p>
                     <a href="https://www.thevrara.com/" target="_blank" rel="noopener noreferrer" class="card-link">thevrara.com →</a>
@@ -441,29 +914,83 @@
 
     <section id="hardware" class="reveal">
         <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 12h2 M16 12h2"/></svg>
+                Устройства
+            </div>
             <h2>Оборудование и устройства</h2>
-            <p>Актуальные гарнитуры и устройства для разработки и использования XR-приложений.</p>
+            <p>Актуальные гарнитуры и устройства для разработки и использования XR-приложений с рейтингами.</p>
         </div>
         
-        <div class="grid-4">
-            <article class="card">
+        <div class="grid">
+            <article class="card reveal reveal-delay-1">
+                <span class="card-tag tag-mr">MR</span>
                 <h3>Meta Quest 3</h3>
                 <p>Эталон смешанной реальности с цветным passthrough-видео. Высокая производительность и автономность.</p>
+                <div style="margin-top: auto;">
+                    <div class="rating-label"><span>Производительность</span><span>9.2/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="92"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Цена/Качество</span><span>9.5/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="95"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Контент</span><span>9.8/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="98"></div></div>
+                </div>
             </article>
             
-            <article class="card">
+            <article class="card reveal reveal-delay-2">
+                <span class="card-tag tag-vr">VR</span>
                 <h3>Pico 4 Enterprise</h3>
                 <p>Популярная автономная гарнитура в РФ. Хорошее соотношение цены, веса и качества дисплеев.</p>
+                <div style="margin-top: auto;">
+                    <div class="rating-label"><span>Производительность</span><span>8.0/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="80"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Цена/Качество</span><span>9.0/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="90"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Доступность в РФ</span><span>9.5/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="95"></div></div>
+                </div>
             </article>
             
-            <article class="card">
+            <article class="card reveal reveal-delay-3">
+                <span class="card-tag tag-vr">Enterprise</span>
                 <h3>HTC Vive Focus 3</h3>
                 <p>Корпоративный стандарт для бизнес-приложений. Высокая надежность и продвинутый бизнес-менеджмент.</p>
+                <div style="margin-top: auto;">
+                    <div class="rating-label"><span>Производительность</span><span>8.5/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="85"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Enterprise-функции</span><span>9.3/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="93"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Надежность</span><span>9.0/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="90"></div></div>
+                </div>
             </article>
             
-            <article class="card">
+            <article class="card reveal reveal-delay-4">
+                <span class="card-tag tag-hot">Premium</span>
                 <h3>Varjo XR-4</h3>
                 <p>Премиальная гарнитура для профессионального использования. Высокое разрешение и точное отслеживание глаз.</p>
+                <div style="margin-top: auto;">
+                    <div class="rating-label"><span>Разрешение</span><span>9.8/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="98"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Eye-tracking</span><span>9.5/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="95"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Цена</span><span>5.0/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="50"></div></div>
+                </div>
+            </article>
+
+            <article class="card reveal reveal-delay-1">
+                <span class="card-tag tag-mr">Spatial</span>
+                <h3>Apple Vision Pro</h3>
+                <p>Революционное устройство пространственных вычислений. Лучшее отслеживание глаз и рук, micro-OLED дисплеи с 4K на каждый глаз.</p>
+                <div style="margin-top: auto;">
+                    <div class="rating-label"><span>Дисплей</span><span>10/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="100"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Интерфейс</span><span>9.5/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="95"></div></div>
+                    <div class="rating-label" style="margin-top: 8px;"><span>Экосистема</span><span>7.0/10</span></div>
+                    <div class="rating-bar"><div class="rating-bar-fill" data-width="70"></div></div>
+                </div>
             </article>
         </div>
     </section>
@@ -471,64 +998,133 @@
     <div class="bg-surface">
         <section id="dev" class="container reveal">
             <div class="section-header">
+                <div class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    Разработка
+                </div>
                 <h2>Стек технологий разработки</h2>
                 <p>Инструменты и движки для создания иммерсивных продуктов.</p>
             </div>
             
             <div class="grid">
-                <article class="card">
+                <article class="card reveal reveal-delay-1">
+                    <span class="card-tag tag-hot">Популярный</span>
                     <h3>Unity</h3>
                     <p>Самый популярный движок для мобильной и автономной VR/AR разработки. Огромное комьюнити, Asset Store и поддержка всех основных платформ. Язык: C#.</p>
                     <a href="https://unity.com/ru/solutions/xr" target="_blank" rel="noopener noreferrer" class="card-link">unity.com →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-2">
                     <h3>Unreal Engine 5</h3>
                     <p>Стандарт для фотореалистичной визуализации и сложных промышленных симуляций. Blueprints позволяют создавать логику без кода. Языки: C++, Blueprints.</p>
                     <a href="https://www.unrealengine.com/" target="_blank" rel="noopener noreferrer" class="card-link">unrealengine.com →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-3">
                     <h3>WebXR + Three.js</h3>
                     <p>Веб-технологии для создания XR-опыта прямо в браузере. Идеально для маркетинговых кампаний и быстрого прототипирования. Библиотеки: Three.js, A-Frame, React Three Fiber.</p>
                     <a href="https://immersiveweb.dev/" target="_blank" rel="noopener noreferrer" class="card-link">immersiveweb.dev →</a>
                 </article>
                 
-                <article class="card">
+                <article class="card reveal reveal-delay-4">
                     <h3>Godot Engine</h3>
                     <p>Открытый движок с растущей поддержкой XR. Бесплатный, легковесный, с собственным языком GDScript. Подходит для инди-разработчиков и образовательных проектов.</p>
                     <a href="https://godotengine.org/" target="_blank" rel="noopener noreferrer" class="card-link">godotengine.org →</a>
                 </article>
+            </div>
+
+            <!-- Dev Stack Comparison -->
+            <div class="chart-container reveal" style="margin-top: 2rem;">
+                <div class="chart-title">Сравнение движков для XR-разработки</div>
+                <svg viewBox="0 0 800 250" class="chart-svg" id="dev-chart" role="img" aria-label="Сравнение движков">
+                    <!-- Radar-like comparison using grouped bars -->
+                    <text x="100" y="20" fill="#9898b8" font-size="11" font-weight="600">Движок</text>
+                    <text x="300" y="20" fill="#9898b8" font-size="11" font-weight="600">VR</text>
+                    <text x="400" y="20" fill="#9898b8" font-size="11" font-weight="600">AR</text>
+                    <text x="500" y="20" fill="#9898b8" font-size="11" font-weight="600">Web</text>
+                    <text x="600" y="20" fill="#9898b8" font-size="11" font-weight="600">Графика</text>
+                    <text x="700" y="20" fill="#9898b8" font-size="11" font-weight="600">Простота</text>
+                    
+                    <!-- Unity -->
+                    <text x="100" y="55" fill="#f0f0ff" font-size="12" font-weight="700">Unity</text>
+                    <rect x="300" y="42" width="80" height="14" rx="3" fill="#00e5ff" opacity="0.9"/>
+                    <rect x="400" y="42" width="85" height="14" rx="3" fill="#00e5ff" opacity="0.9"/>
+                    <rect x="500" y="42" width="50" height="14" rx="3" fill="#00e5ff" opacity="0.6"/>
+                    <rect x="600" y="42" width="75" height="14" rx="3" fill="#00e5ff" opacity="0.8"/>
+                    <rect x="700" y="42" width="70" height="14" rx="3" fill="#00e5ff" opacity="0.7"/>
+                    
+                    <!-- Unreal -->
+                    <text x="100" y="95" fill="#f0f0ff" font-size="12" font-weight="700">Unreal 5</text>
+                    <rect x="300" y="82" width="90" height="14" rx="3" fill="#8b5cf6" opacity="0.9"/>
+                    <rect x="400" y="82" width="60" height="14" rx="3" fill="#8b5cf6" opacity="0.6"/>
+                    <rect x="500" y="82" width="30" height="14" rx="3" fill="#8b5cf6" opacity="0.4"/>
+                    <rect x="600" y="82" width="95" height="14" rx="3" fill="#8b5cf6" opacity="0.95"/>
+                    <rect x="700" y="82" width="45" height="14" rx="3" fill="#8b5cf6" opacity="0.5"/>
+                    
+                    <!-- WebXR -->
+                    <text x="100" y="135" fill="#f0f0ff" font-size="12" font-weight="700">WebXR</text>
+                    <rect x="300" y="122" width="55" height="14" rx="3" fill="#ec4899" opacity="0.6"/>
+                    <rect x="400" y="122" width="75" height="14" rx="3" fill="#ec4899" opacity="0.8"/>
+                    <rect x="500" y="122" width="95" height="14" rx="3" fill="#ec4899" opacity="0.95"/>
+                    <rect x="600" y="122" width="50" height="14" rx="3" fill="#ec4899" opacity="0.5"/>
+                    <rect x="700" y="122" width="80" height="14" rx="3" fill="#ec4899" opacity="0.8"/>
+                    
+                    <!-- Godot -->
+                    <text x="100" y="175" fill="#f0f0ff" font-size="12" font-weight="700">Godot</text>
+                    <rect x="300" y="162" width="60" height="14" rx="3" fill="#10b981" opacity="0.7"/>
+                    <rect x="400" y="162" width="50" height="14" rx="3" fill="#10b981" opacity="0.5"/>
+                    <rect x="500" y="162" width="40" height="14" rx="3" fill="#10b981" opacity="0.4"/>
+                    <rect x="600" y="162" width="60" height="14" rx="3" fill="#10b981" opacity="0.6"/>
+                    <rect x="700" y="162" width="90" height="14" rx="3" fill="#10b981" opacity="0.9"/>
+
+                    <!-- Legend -->
+                    <rect x="300" y="210" width="12" height="12" rx="2" fill="#00e5ff"/>
+                    <text x="318" y="220" fill="#9898b8" font-size="10">Unity</text>
+                    <rect x="380" y="210" width="12" height="12" rx="2" fill="#8b5cf6"/>
+                    <text x="398" y="220" fill="#9898b8" font-size="10">Unreal</text>
+                    <rect x="460" y="210" width="12" height="12" rx="2" fill="#ec4899"/>
+                    <text x="478" y="220" fill="#9898b8" font-size="10">WebXR</text>
+                    <rect x="540" y="210" width="12" height="12" rx="2" fill="#10b981"/>
+                    <text x="558" y="220" fill="#9898b8" font-size="10">Godot</text>
+                </svg>
             </div>
         </section>
     </div>
 
     <section id="cases" class="reveal">
         <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Практика
+            </div>
             <h2>Кейсы внедрения в России</h2>
             <p>Реальные примеры использования XR-технологий в крупных компаниях.</p>
         </div>
         
         <div class="grid">
-            <article class="card">
+            <article class="card reveal reveal-delay-1">
+                <span class="card-tag tag-vr">VR-обучение</span>
                 <h3>Росатом</h3>
                 <p>Внедрение VR-технологий для обучения стропальщиков и персонала атомных станций. Позволяет отрабатывать навыки в безопасной цифровой среде и моделировать нештатные ситуации.</p>
                 <a href="https://rosatom.ru/press_center/news/rosatom-nachal-primenyat-vr-tekhnologii-pri-obuchenii-stropalshchikov" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
             </article>
             
-            <article class="card">
+            <article class="card reveal reveal-delay-2">
+                <span class="card-tag tag-vr">Тренажер</span>
                 <h3>Газпром нефть шельф</h3>
                 <p>Создание VR-тренажера для повышения эффективности обучения работников. Включает функции повторного просмотра и моделирования аварийных ситуаций.</p>
                 <a href="https://shelf.gazprom-neft.ru/press-center/news/gazprom-neft-shelf-vnedril-virtualnuyu-realnost-v-obuchenie-sotrudnikov" target="_blank" rel="noopener noreferrer" class="card-link">Кейс →</a>
             </article>
             
-            <article class="card">
+            <article class="card reveal reveal-delay-3">
+                <span class="card-tag tag-vr">Симуляция</span>
                 <h3>Газпром ЦПС</h3>
                 <p>Разработка инновационного VR-тренажера для отработки действий при ликвидации газонефтеводопроявлений на буровой установке. Внедрение в учебных центрах Краснодара.</p>
                 <a href="https://neftegaz.ru/news/vtrende/898875-gazprom-tsps-predstavil-vr-trenazher-dlya-likvidatsii-gazoneftevodoproyavleniy-na-burovoy/" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
             </article>
             
-            <article class="card">
+            <article class="card reveal reveal-delay-4">
+                <span class="card-tag tag-hot">Масштаб</span>
                 <h3>Росэнергоатом</h3>
                 <p>Построение системы VR-обучения на отечественных технологиях для обеспечения безопасной и бесперебойной работы атомных станций.</p>
                 <a href="https://astra.ru/about/press-center/news/rosenergoatom-stroit-sistemu-vr-obucheniya-na-otechestvennykh-tekhnologiyakh-/" target="_blank" rel="noopener noreferrer" class="card-link">Проект →</a>
@@ -536,108 +1132,223 @@
         </div>
     </section>
 
+    <!-- Timeline Section -->
     <div class="bg-surface">
-        <section id="education" class="container reveal">
+        <section id="timeline" class="container reveal">
             <div class="section-header">
-                <h2>Образование и подготовка кадров</h2>
-                <p>Программы обучения и вузы, готовящие специалистов в области XR.</p>
+                <div class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    История
+                </div>
+                <h2>Эволюция XR-технологий</h2>
+                <p>Ключевые вехи развития индустрии расширенной реальности.</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2016</div>
+                    <div class="timeline-title">Год виртуальной реальности</div>
+                    <div class="timeline-desc">Запуск Oculus Rift, HTC Vive и PlayStation VR. Начало массовой эры VR.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2017</div>
+                    <div class="timeline-title">AR выходит в массы</div>
+                    <div class="timeline-desc">Apple ARKit и Google ARCore делают дополненную реальность доступной на миллиардах смартфонов.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2019</div>
+                    <div class="timeline-title">OpenXR 1.0</div>
+                    <div class="timeline-desc">Khronos Group выпускает OpenXR — единый стандарт для всех XR-устройств.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-title">Standalone VR</div>
+                    <div class="timeline-desc">Oculus Quest 2 задаёт новый стандарт автономных VR-гарнитур. Взрывной рост корпоративного VR.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-title">Mixed Reality</div>
+                    <div class="timeline-desc">Meta Quest 3 и Apple Vision Pro открывают эру смешанной реальности с passthrough-видео.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-title">Spatial Computing</div>
+                    <div class="timeline-desc">Apple Vision Pro запускает концепцию пространственных вычислений. AI + XR интеграция.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2025–2026</div>
+                    <div class="timeline-title">Эра конвергенции</div>
+                    <div class="timeline-desc">AI-генерация 3D-контента, нейросетевые аватары, массовое внедрение в промышленности и образовании.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="bg-surface" style="padding-top: 0;">
+        <section id="trends" class="container reveal">
+            <div class="section-header">
+                <div class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    Тренды
+                </div>
+                <h2>Тренды 2026: AI + XR</h2>
+                <p>Ключевые направления, формирующие будущее индустрии.</p>
             </div>
             
             <div class="grid">
-                <article class="card">
-                    <h3>Varwin Education</h3>
-                    <p>Образовательная платформа для обучения программированию через создание интерактивных 3D/VR/AR-миров. Используется в школах, техникумах и вузах.</p>
-                    <a href="https://varwin.com/ru/education/" target="_blank" rel="noopener noreferrer" class="card-link">Платформа →</a>
+                <article class="card reveal reveal-delay-1">
+                    <span class="card-tag tag-hot">Тренд #1</span>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>AI-генерация 3D-контента</h3>
+                    <p>Нейросети создают 3D-модели, текстуры и целые сцены из текстовых описаний. Сокращение времени разработки в 10–50 раз.</p>
                 </article>
                 
-                <article class="card">
-                    <h3>VR Concept для образования</h3>
-                    <p>Обучает внедрению технологии VR в образование с 2021 года. Подготовлено более 1000 преподавателей. Флагманская программа МГПУ.</p>
-                    <a href="https://www.mgpu.ru/vr-v-obuchenii-flagmanskaya-obrazovatelnaya-programma-mgpu/" target="_blank" rel="noopener noreferrer" class="card-link">Программа →</a>
+                <article class="card reveal reveal-delay-2">
+                    <span class="card-tag tag-hot">Тренд #2</span>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 7a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Цифровые аватары с AI</h3>
+                    <p>Реалистичные AI-персонажи в VR для обучения, поддержки клиентов и виртуальных помощников. Интеграция LLM в NPC.</p>
                 </article>
                 
-                <article class="card">
-                    <h3>Вузы России</h3>
-                    <p>69 вузов и 30 колледжей предлагают программы обучения профессии VR/AR-разработчика. Включают Unity, Unreal Engine, 3D-моделирование и UX-дизайн.</p>
-                    <a href="https://postupi.online/professiya/vr-ar-razrabotchik-razrabotchik-virtualnoj-i-dopolnennoj-realnosti/vuzi/" target="_blank" rel="noopener noreferrer" class="card-link">Список вузов →</a>
+                <article class="card reveal reveal-delay-3">
+                    <span class="card-tag tag-hot">Тренд #3</span>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Цифровые двойники + XR</h3>
+                    <p>Визуализация цифровых двойников предприятий в VR/AR. Мониторинг и управление производством в иммерсивной среде.</p>
                 </article>
                 
-                <article class="card">
-                    <h3>Unity Learning</h3>
-                    <p>Официальная траектория обучения разработке VR-приложений от Unity. Включает практические уроки, проекты и сертификацию.</p>
-                    <a href="https://unity.com/ru/solutions/xr/games" target="_blank" rel="noopener noreferrer" class="card-link">Обучение →</a>
+                <article class="card reveal reveal-delay-4">
+                    <span class="card-tag tag-hot">Тренд #4</span>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Spatial Computing</h3>
+                    <p>Переход от «VR/AR» к «пространственным вычислениям». Контекстные интерфейсы, привязанные к физическому миру.</p>
                 </article>
             </div>
         </section>
     </div>
 
-    <section id="events" class="reveal">
+    <section id="education" class="reveal">
         <div class="section-header">
-            <h2>Конференции и события</h2>
-            <p>Ключевые мероприятия индустрии XR в России и мире.</p>
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Обучение
+            </div>
+            <h2>Образование и подготовка кадров</h2>
+            <p>Программы обучения и вузы, готовящие специалистов в области XR.</p>
         </div>
         
         <div class="grid">
-            <article class="card">
-                <h3>HI-TECH 2026</h3>
-                <p>XXXII Международная выставка инноваций. Санкт-Петербург, 14 апреля 2026. Секции: VR/AR-технологии на производстве, промышленный дизайн, микроэлектроника.</p>
-                <a href="https://www.expoforum.ru/calendar/vystavka-innovacij-hi-tech-2026/" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
+            <article class="card reveal reveal-delay-1">
+                <h3>Varwin Education</h3>
+                <p>Образовательная платформа для обучения программированию через создание интерактивных 3D/VR/AR-миров. Используется в школах, техникумах и вузах.</p>
+                <a href="https://varwin.com/ru/education/" target="_blank" rel="noopener noreferrer" class="card-link">Платформа →</a>
             </article>
             
-            <article class="card">
-                <h3>IEEE VR Conference</h3>
-                <p>Премьерная международная конференция по виртуальной реальности и 3D-интерфейсам. Ведущая академическая площадка для обсуждения исследований.</p>
-                <a href="https://ieeevr.org/" target="_blank" rel="noopener noreferrer" class="card-link">ieeevr.org →</a>
+            <article class="card reveal reveal-delay-2">
+                <h3>VR Concept для образования</h3>
+                <p>Обучает внедрению технологии VR в образование с 2021 года. Подготовлено более 1000 преподавателей. Флагманская программа МГПУ.</p>
+                <a href="https://www.mgpu.ru/vr-v-obuchenii-flagmanskaya-obrazovatelnaya-programma-mgpu/" target="_blank" rel="noopener noreferrer" class="card-link">Программа →</a>
             </article>
             
-            <article class="card">
-                <h3>AVRA Events</h3>
-                <p>Мероприятия Ассоциации VR/AR, включая ежегодный виртуальный саммит по образованию (октябрь 2025). Ожидается 1000+ участников и 20+ спикеров.</p>
-                <a href="https://www.thevrara.com/events" target="_blank" rel="noopener noreferrer" class="card-link">Календарь →</a>
+            <article class="card reveal reveal-delay-3">
+                <span class="card-tag tag-hot">69 вузов</span>
+                <h3>Вузы России</h3>
+                <p>69 вузов и 30 колледжей предлагают программы обучения профессии VR/AR-разработчика. Включают Unity, Unreal Engine, 3D-моделирование и UX-дизайн.</p>
+                <a href="https://postupi.online/professiya/vr-ar-razrabotchik-razrabotchik-virtualnoj-i-dopolnennoj-realnosti/vuzi/" target="_blank" rel="noopener noreferrer" class="card-link">Список вузов →</a>
             </article>
             
-            <article class="card">
-                <h3>AR/VR Policy Conference</h3>
-                <p>6-я ежегодная конференция по политике в области AR/VR. 24 сентября 2026. Обсуждение регулирования и стандартизации иммерсивных технологий.</p>
-                <a href="https://www.arvrpolicy.org/" target="_blank" rel="noopener noreferrer" class="card-link">Конференция →</a>
+            <article class="card reveal reveal-delay-4">
+                <h3>Unity Learning</h3>
+                <p>Официальная траектория обучения разработке VR-приложений от Unity. Включает практические уроки, проекты и сертификацию.</p>
+                <a href="https://unity.com/ru/solutions/xr/games" target="_blank" rel="noopener noreferrer" class="card-link">Обучение →</a>
             </article>
         </div>
     </section>
 
     <div class="bg-surface">
-        <section id="resources" class="container reveal">
+        <section id="events" class="container reveal">
             <div class="section-header">
-                <h2>Документация и ресурсы</h2>
-                <p>Полезные ссылки для разработчиков и исследователей.</p>
+                <div class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Мероприятия
+                </div>
+                <h2>Конференции и события</h2>
+                <p>Ключевые мероприятия индустрии XR в России и мире.</p>
             </div>
             
             <div class="grid">
-                <article class="card">
-                    <h3>MDN Web Docs</h3>
-                    <p>Полная документация по WebXR Device API от Mozilla. Включает примеры кода, руководства и справочник по API.</p>
-                    <a href="https://developer.mozilla.org/ru/docs/Web/API/WebXR_Device_API" target="_blank" rel="noopener noreferrer" class="card-link">Документация →</a>
+                <article class="card reveal reveal-delay-1">
+                    <span class="card-tag tag-hot">2026</span>
+                    <h3>HI-TECH 2026</h3>
+                    <p>XXXII Международная выставка инноваций. Санкт-Петербург, 14 апреля 2026. Секции: VR/AR-технологии на производстве, промышленный дизайн, микроэлектроника.</p>
+                    <a href="https://www.expoforum.ru/calendar/vystavka-innovacij-hi-tech-2026/" target="_blank" rel="noopener noreferrer" class="card-link">Подробнее →</a>
                 </article>
                 
-                <article class="card">
-                    <h3>Immersive Web</h3>
-                    <p>Официальный ресурс по веб-стандартам для VR/AR. Включает спецификации, примеры и информацию о поддержке браузерами.</p>
-                    <a href="https://immersiveweb.dev/" target="_blank" rel="noopener noreferrer" class="card-link">immersiveweb.dev →</a>
+                <article class="card reveal reveal-delay-2">
+                    <h3>IEEE VR Conference</h3>
+                    <p>Премьерная международная конференция по виртуальной реальности и 3D-интерфейсам. Ведущая академическая площадка для обсуждения исследований.</p>
+                    <a href="https://ieeevr.org/" target="_blank" rel="noopener noreferrer" class="card-link">ieeevr.org →</a>
                 </article>
                 
-                <article class="card">
-                    <h3>OpenXR Documentation</h3>
-                    <p>Официальная документация стандарта OpenXR от Khronos Group. Спецификации API, руководства разработчика и best practices.</p>
-                    <a href="https://www.khronos.org/openxr/" target="_blank" rel="noopener noreferrer" class="card-link">Документация →</a>
+                <article class="card reveal reveal-delay-3">
+                    <h3>AVRA Events</h3>
+                    <p>Мероприятия Ассоциации VR/AR, включая ежегодный виртуальный саммит по образованию (октябрь 2025). Ожидается 1000+ участников и 20+ спикеров.</p>
+                    <a href="https://www.thevrara.com/events" target="_blank" rel="noopener noreferrer" class="card-link">Календарь →</a>
                 </article>
                 
-                <article class="card">
-                    <h3>VR Digest</h3>
-                    <p>Каталог компаний и ресурсов в сфере виртуальной и дополненной реальности в России. Новости и аналитика рынка.</p>
-                    <a href="https://vrdigest.ru/" target="_blank" rel="noopener noreferrer" class="card-link">vrdigest.ru →</a>
+                <article class="card reveal reveal-delay-4">
+                    <h3>AR/VR Policy Conference</h3>
+                    <p>6-я ежегодная конференция по политике в области AR/VR. 24 сентября 2026. Обсуждение регулирования и стандартизации иммерсивных технологий.</p>
+                    <a href="https://www.arvrpolicy.org/" target="_blank" rel="noopener noreferrer" class="card-link">Конференция →</a>
                 </article>
             </div>
         </section>
     </div>
+
+    <section id="resources" class="reveal">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Ресурсы
+            </div>
+            <h2>Документация и ресурсы</h2>
+            <p>Полезные ссылки для разработчиков и исследователей.</p>
+        </div>
+        
+        <div class="grid">
+            <article class="card reveal reveal-delay-1">
+                <h3>MDN Web Docs</h3>
+                <p>Полная документация по WebXR Device API от Mozilla. Включает примеры кода, руководства и справочник по API.</p>
+                <a href="https://developer.mozilla.org/ru/docs/Web/API/WebXR_Device_API" target="_blank" rel="noopener noreferrer" class="card-link">Документация →</a>
+            </article>
+            
+            <article class="card reveal reveal-delay-2">
+                <h3>Immersive Web</h3>
+                <p>Официальный ресурс по веб-стандартам для VR/AR. Включает спецификации, примеры и информацию о поддержке браузерами.</p>
+                <a href="https://immersiveweb.dev/" target="_blank" rel="noopener noreferrer" class="card-link">immersiveweb.dev →</a>
+            </article>
+            
+            <article class="card reveal reveal-delay-3">
+                <h3>OpenXR Documentation</h3>
+                <p>Официальная документация стандарта OpenXR от Khronos Group. Спецификации API, руководства разработчика и best practices.</p>
+                <a href="https://www.khronos.org/openxr/" target="_blank" rel="noopener noreferrer" class="card-link">Документация →</a>
+            </article>
+            
+            <article class="card reveal reveal-delay-4">
+                <h3>VR Digest</h3>
+                <p>Каталог компаний и ресурсов в сфере виртуальной и дополненной реальности в России. Новости и аналитика рынка.</p>
+                <a href="https://vrdigest.ru/" target="_blank" rel="noopener noreferrer" class="card-link">vrdigest.ru →</a>
+            </article>
+        </div>
+    </section>
 
     <section id="contact" class="reveal">
         <div class="contact-box">
@@ -655,6 +1366,15 @@
     <footer>
         <p>&copy; 2026 XRTECH.RU. Информационный хаб по технологиям расширенной реальности.</p>
         <p style="margin-top: 8px; font-size: 0.8rem; color: var(--text-muted);">Все ссылки проверены и актуальны.</p>
+        <div class="footer-links">
+            <a href="#about">Технологии</a>
+            <a href="#standards">Стандарты</a>
+            <a href="#market">Рынок</a>
+            <a href="#companies">Компании</a>
+            <a href="#cases">Кейсы</a>
+            <a href="#education">Образование</a>
+            <a href="#events">События</a>
+        </div>
     </footer>
 
     <div id="scroll-top" aria-label="Наверх">
@@ -662,6 +1382,15 @@
     </div>
 
     <script>
+        // === Scroll Progress Bar ===
+        const scrollProgress = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
         // === Мобильное меню ===
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
@@ -697,8 +1426,122 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
         revealElements.forEach(el => revealObserver.observe(el));
+
+        // === Анимированные счётчики ===
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    animateCounter(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(el => counterObserver.observe(el));
+
+        function animateCounter(el) {
+            const target = parseFloat(el.dataset.target);
+            const prefix = el.dataset.prefix || '';
+            const suffix = el.dataset.suffix || '';
+            const duration = 2000;
+            const startTime = performance.now();
+            const isFloat = target % 1 !== 0;
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                const current = target * eased;
+                
+                if (isFloat) {
+                    el.textContent = prefix + current.toFixed(1) + suffix;
+                } else {
+                    el.textContent = prefix + Math.round(current) + suffix;
+                }
+                
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        // === Hero Stats Counter ===
+        const heroStatValues = document.querySelectorAll('.hero-stat-value');
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    const target = parseFloat(entry.target.dataset.count);
+                    const prefix = entry.target.dataset.prefix || '';
+                    const suffix = entry.target.dataset.suffix || '';
+                    const duration = 2500;
+                    const startTime = performance.now();
+                    const isFloat = target % 1 !== 0;
+
+                    function update(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = target * eased;
+                        
+                        if (isFloat) {
+                            entry.target.textContent = prefix + current.toFixed(1) + suffix;
+                        } else {
+                            entry.target.textContent = prefix + Math.round(current) + suffix;
+                        }
+                        
+                        if (progress < 1) requestAnimationFrame(update);
+                    }
+                    requestAnimationFrame(update);
+                }
+            });
+        }, { threshold: 0.5 });
+        heroStatValues.forEach(el => heroObserver.observe(el));
+
+        // === Rating Bars Animation ===
+        const ratingBars = document.querySelectorAll('.rating-bar-fill');
+        const ratingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.dataset.width;
+                    setTimeout(() => {
+                        entry.target.style.width = width + '%';
+                    }, 200);
+                }
+            });
+        }, { threshold: 0.3 });
+        ratingBars.forEach(el => ratingObserver.observe(el));
+
+        // === Industry Chart Animation ===
+        const indBars = document.querySelectorAll('.ind-bar');
+        const indObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetWidth = entry.target.dataset.width;
+                    setTimeout(() => {
+                        entry.target.setAttribute('width', targetWidth);
+                    }, 300);
+                    entry.target.style.transition = 'width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }
+            });
+        }, { threshold: 0.3 });
+        indBars.forEach(el => indObserver.observe(el));
+
+        // === Market Chart Bar Animation ===
+        const chartBars = document.querySelectorAll('.chart-bar');
+        const chartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetHeight = parseFloat(entry.target.dataset.height);
+                    const baseY = 240;
+                    entry.target.setAttribute('height', targetHeight);
+                    entry.target.setAttribute('y', baseY - targetHeight);
+                    entry.target.style.transition = 'all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }
+            });
+        }, { threshold: 0.3 });
+        chartBars.forEach(el => chartObserver.observe(el));
 
         // === Кнопка "Вверх" ===
         const scrollTopBtn = document.getElementById('scroll-top');
@@ -710,7 +1553,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // === Canvas эффект (интерактивная сетка) ===
+        // === Canvas эффект (улучшенная particle system) ===
         const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles = [], animationId, mouseX = 0, mouseY = 0;
@@ -731,28 +1574,51 @@
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.3;
-                this.vy = (Math.random() - 0.5) * 0.3;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.alpha = Math.random() * 0.5 + 0.1;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.size = Math.random() * 2 + 0.5;
+                this.alpha = Math.random() * 0.6 + 0.1;
+                this.color = Math.random() > 0.5 ? '0, 229, 255' : '139, 92, 246';
+                this.pulse = Math.random() * Math.PI * 2;
+                this.pulseSpeed = 0.02 + Math.random() * 0.02;
             }
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
+                this.pulse += this.pulseSpeed;
+                
                 if (this.x < 0 || this.x > width) this.vx *= -1;
                 if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Mouse attraction
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 200) {
+                    this.vx += dx * 0.00005;
+                    this.vy += dy * 0.00005;
+                }
             }
             draw() {
+                const pulseAlpha = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 240, 255, ${this.alpha})`;
+                ctx.fillStyle = `rgba(${this.color}, ${pulseAlpha})`;
                 ctx.fill();
+                
+                // Glow
+                if (this.size > 1.2) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${this.color}, ${pulseAlpha * 0.1})`;
+                    ctx.fill();
+                }
             }
         }
 
         function init() {
             particles = [];
-            const count = Math.min(Math.floor(width / 12), 100);
+            const count = Math.min(Math.floor(width / 10), 120);
             for (let i = 0; i < count; i++) particles.push(new Particle());
         }
 
@@ -762,25 +1628,29 @@
                 particles[i].update();
                 particles[i].draw();
                 
+                // Mouse connections
                 const dxMouse = mouseX - particles[i].x;
                 const dyMouse = mouseY - particles[i].y;
                 const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-                if (distMouse < 150) {
+                if (distMouse < 180) {
+                    const alpha = 0.2 * (1 - distMouse / 180);
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(112, 0, 255, ${0.15 - distMouse/1000})`;
+                    ctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`;
                     ctx.lineWidth = 0.8;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(mouseX, mouseY);
                     ctx.stroke();
                 }
 
+                // Particle connections
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
+                    if (dist < 130) {
+                        const alpha = 0.1 * (1 - dist / 130);
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.08 - dist/1500})`;
+                        ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
@@ -797,6 +1667,15 @@
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) cancelAnimationFrame(animationId);
             else animate();
+        });
+
+        // === Smooth reveal for staggered children ===
+        const staggerContainers = document.querySelectorAll('.grid, .grid-3, .grid-4, .stats-grid');
+        staggerContainers.forEach(container => {
+            const children = container.querySelectorAll('.card, .stat-card');
+            children.forEach((child, index) => {
+                child.style.transitionDelay = (index * 0.1) + 's';
+            });
         });
     </script>
 </body>
